@@ -33,7 +33,7 @@
 - [Github](https://github.com/minsiks/Team2-Semi_Project)
 - [ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)
 - [padlet](https://padlet.com/tidnjrk010/Bookmarks?utm_campaign=added_post&utm_medium=desktop&utm_source=notifications)
-- Notion
+- [Notion](https://www.notion.so/hi-syl/d9931d43fcd740328b8c45b34269994d)
 
 ---
 
