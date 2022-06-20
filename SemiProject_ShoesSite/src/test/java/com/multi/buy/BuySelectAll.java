@@ -1,27 +1,31 @@
-package com.multi.cust;
+package com.multi.buy;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CustBiz;
-import com.multi.vo.CustVO;
+import com.multi.biz.BuyBiz;
+import com.multi.vo.BuyVO;
 
 @SpringBootTest
-class CustInsertTest {
+class BuySelectAll {
 
 	@Autowired
-	CustBiz biz;
+	BuyBiz biz;
 	
 	@Test
 	void contextLoads() {
-		CustVO cust = new CustVO("id07", "pwd07", "hong","010-9059-4444");
+		List<BuyVO> list = null;
 		try {
-			biz.register(cust);
-			System.out.println(cust);
+			list = biz.get();
+			for (BuyVO obj : list) {
+				System.out.println(obj);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		};
 	}
 
 }

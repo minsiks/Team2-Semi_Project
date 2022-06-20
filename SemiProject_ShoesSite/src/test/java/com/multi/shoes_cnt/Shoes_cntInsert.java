@@ -1,27 +1,26 @@
-package com.multi.cust;
+package com.multi.shoes_cnt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CustBiz;
-import com.multi.vo.CustVO;
+import com.multi.biz.Shoes_cntBiz;
+import com.multi.vo.Shoes_cntVO;
 
 @SpringBootTest
-class CustInsertTest {
+class Shoes_cntInsert {
 
 	@Autowired
-	CustBiz biz;
+	Shoes_cntBiz biz;
 	
 	@Test
 	void contextLoads() {
-		CustVO cust = new CustVO("id07", "pwd07", "hong","010-9059-4444");
+		Shoes_cntVO obj = new Shoes_cntVO(3010, 250, 5);
 		try {
-			biz.register(cust);
-			System.out.println(cust);
+			biz.register(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		};
 	}
 
 }

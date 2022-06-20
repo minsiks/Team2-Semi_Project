@@ -15,7 +15,7 @@ class CustUpdateTest {
 	
 	@Test
 	void contextLoads() {
-		CustVO cust = new CustVO("id06", "pwd06", "han");
+		CustVO cust = new CustVO("id06", "pwd06", "han","010-9059-4444");
 		try {
 			biz.modify(cust);
 		} catch (Exception e) {

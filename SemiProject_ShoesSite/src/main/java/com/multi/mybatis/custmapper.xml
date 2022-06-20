@@ -11,10 +11,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM CUST
 	</select>
 	<insert id="insert" parameterType="custVO">
-		INSERT INTO CUST VALUES (#{id},#{pwd},#{name},sysdate())
+		INSERT INTO CUST VALUES (#{id},#{pwd},#{name},sysdate(),#{telphone})
 	</insert>
 	<update id="update" parameterType="custVO">
-		UPDATE CUST SET PWD=#{pwd}, NAME=#{name} WHERE ID=#{id}
+		UPDATE CUST SET PWD=#{pwd}, NAME=#{name},TELPHONE=#{telphone} WHERE ID=#{id}
 	</update>
 	<delete id="delete" parameterType="String">
 		DELETE FROM CUST WHERE ID=#{id}

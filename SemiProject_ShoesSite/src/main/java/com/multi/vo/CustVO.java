@@ -18,10 +18,12 @@ public class CustVO {
 	private String pwd;
 	private String name;
 	private Date regdate;
-	public CustVO(String id, String pwd, String name) {
+	private String telphone;
+	public CustVO(String id, String pwd, String name, String telphone) {
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
+		this.telphone = telphone;
 	}
 	
 }
