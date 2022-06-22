@@ -36,8 +36,6 @@ public class CartBiz implements Biz<Integer, CartVO> {
 	@Override
 	public CartVO get(Integer k) throws Exception {
 		return dao.select(k);
-		
-	
 	}
 
 	@Override
@@ -45,6 +43,10 @@ public class CartBiz implements Biz<Integer, CartVO> {
 
 		return dao.selectall();
 	}
-	
-	
+	public List<CartVO> uidselect(String id) throws Exception{
+		return dao.uidselect(id);
+	}
+	public int gettotal(String id) throws Exception{
+		return dao.gettotal(id);
+	}
 }

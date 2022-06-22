@@ -4,6 +4,22 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.ReviewMapper">
 	
+	<!-- 추가 쿼리문 -->
+	<select id="selectproduct" parameterType="int" resultType="reviewVO">
+		SELECT * FROM REVIEW WHERE PID=#{pid}
+	</select>
+	<select id="selectstaravg" parameterType="int" resultType="int">
+		SELECT AVG(star) AS staravg FROM review
+		WHERE PID=#{pid}
+	</select>
+	<select id="selectreviewcnt" parameterType="int" resultType="int">
+		SELECT COUNT(id) AS count FROM review
+		WHERE PID=#{pid}
+	</select>
+	
+	
+	
+	
 	<select id="select" parameterType="String" resultType="reviewVO">
 		SELECT * FROM REVIEW WHERE ID=#{id}
 	</select>

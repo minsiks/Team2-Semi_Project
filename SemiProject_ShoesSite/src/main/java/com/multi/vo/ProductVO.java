@@ -30,7 +30,7 @@ public class ProductVO {
 	private int size;
 	private String review_uid;
 	private String review_text;
-	
+	private String catename;
 	
 	public ProductVO(String name, int price ,String imgname1, String imgname2, int cid, String color, String gender) {
 		super();

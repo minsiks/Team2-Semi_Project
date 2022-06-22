@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="kr">
+<style>
+#userid{
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+#commentlist{
+	padding-top : 10px;
+	margin-bottom: 30px;
+}
+
+.form-radio{
+	display: inline-block;
+}
+
+#size{
+	margin-top: 40px;
+}
+
+input[type="radio"] {display: none;}
+
+input[type="radio"]+label{
+  display: inline-block;
+  width: 50px; 
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  cursor:pointer;
+  border:solid 0.5px #c4c4c4;
+  line-height:35px;
+  text-align: center;
+  font-size: medium;
+}
+input[type="radio"]:checked + label{
+  background-color : #cbb18a;
+  text-align: center;
+}
+
+input[type="radio"]:disabled+ label{
+  background-color : #f7f4f4;
+  color : #dfdada;
+  text-align: center;
+}
+
+#pdescriptionimg>img{
+	width:100%;
+	height:auto;
+}
+
+
+#product_tabs_description{
+	padding-top: 45px;
+}
+
+#thd{
+	display : inline-block;
+	width : 140px;
+	height:40px;
+	font-size: 1.5em;
+	
+}
+
+#tbd{
+	display : inline-block;
+	width : 100px;
+	height:40px;
+	font-size: large;
+}
+
+#tbds{
+	display : inline-block;
+	width : 50px;
+	height:40px;
+	font-size: large;
+}
+
+</style>
+<script>
+
+$(document).ready(function(){
+	$('#additional_silder_products_images').owlCarousel({	
+		items:5,
+		itemsDesktop:[1199,3],
+		itemsDesktopSmall:[992,2],
+		itemsTablet:[768,3],
+		itemsMobile:[600,2],
+		autoPlay: 6000,
+		pagination: false,
+		navigation: true,
+		navigationText: ['<i class="fa fa-angle-left fa-5x"></i>', '<i class="fa fa-angle-right fa-5x"></i>']
+	});
+});
+
+$(document).ready(function(){
+	$('#related_product').owlCarousel({	
+		items: 4,
+		itemsDesktop:[1199,3],
+		itemsDesktopSmall:[992,3],
+		itemsTablet:[768,2],
+		itemsMobile:[450,1],
+		autoPlay: 10000,
+		pagination: false,
+		navigation: true,
+		navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>']
+	});
+});
+
+$(window).load(function() {
+	$('.sp-wrap').smoothproducts();
+});
+
+</script>
+<!-- script files -->
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/vendor/smoothproducts/smoothproducts.min.js"></script>
+<!-- script files -->
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2 th:text="${detailproduct.name}">Name</h2>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="content" class="single_products_page">
+<!-- single products page -->
+	<div id="products_products" class="single_products_section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="eb_right single_products_right_side">
+						<div class="single_products_images">
+							<div class="single_product_image">
+								<div class="sp-loading">
+									<img th:src="'assets/image/products/'+${detailproduct.imgname1}" alt="" width="100%">
+								</div>
+							</div>
+							
+							<!-- 제품 썸네일 이미지외의 다른 이미지 슬라이드  -->
+							<!-- <div class="sp-wrap">
+								<div id="additional_silder_products_images" class="owl-carousel">
+									<div class="item">
+										<a href="assets/image/products/product-1.jpg">
+											<img src="assets/image/products/product-2.jpg" alt="">
+										</a>
+									</div>	
+									<div class="item">
+										<a href="assets/image/products/product-3.jpg">
+											<img src="assets/image/products/product-4.jpg" alt="">
+										</a>
+									</div>
+									<div class="item">
+										<a href="assets/image/products/product-5.jpg">
+											<img src="assets/image/products/product-6.jpg" alt="">
+										</a>
+									</div>
+									<div class="item">
+										<a href="assets/image/products/product-7.jpg">
+											<img src="assets/image/products/product-8.jpg" alt="">
+										</a>
+									</div>	
+									<div class="item">
+										<a href="assets/image/products/product-9.jpg">
+											<img src="assets/image/products/product-10.jpg" alt="">
+										</a>
+									</div>	
+									<div class="item">
+										<a href="assets/image/products/product-11.jpg">
+											<img src="assets/image/products/product-12.jpg" alt="">
+										</a>
+									</div>
+									
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-sm-6">
+					<div class="eb_left single_products_left_side">
+						<h2 th:text=${detailproduct.name}>name</h2>
+						<div class="rating">
+							<p>			
+								<span><i class="fa fa-star"></i></span>				  				  
+								<span><i class="fa fa-star"></i></span>				  				  
+								<span><i class="fa fa-star-o"></i></span>				  				 
+								<span><i class="fa fa-star-o"></i></span>				  				  
+								<span><i class="fa fa-star-o"></i></span>				  					
+								<span class="border"> | </span> 
+								<span th:text="${reviewcount}+' reviews'">reviewcount</span>	  
+							</p>
+						</div>
+						<hr>
+						<div class="price-block">
+							<div class="price-box">
+								<p class="in-stock"><i class="fa fa-check"></i> In Stock</p>
+								<p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price" th:text="${detailproduct.price}+'원'"></span> </p>
+							</div>
+						</div>
+						
+						<!-- 사이즈 버튼 -->
+						<div id="size" class="size">
+						  <h3>Size</h3>
+						  <div class="form-radio" th:each="sizedetail:${slist}">
+						  	<input type="radio" th:id="${sizedetail.size}" th:value="${sizedetail.size}" name="size">
+						  	<label th:for="${sizedetail.size}" th:text="${sizedetail.size}"></label>
+						  </div>
+						</div>
+						
+						<!-- 수량 버튼 -->
+						<div class="add-to-box">
+							<div class="add-to-cart">
+								<div class="pull-left">
+									<div class="custom pull-left">
+										<button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) && qty > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
+										<input type="number" class="input-text qty" title="Qty" value="1" maxlength="3" id="qty" name="count">
+										<button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
+									</div>
+								</div>
+								<button onclick="productAddToCartForm.submit(this)" class="btn btn-cart" title="Add to Cart" type="button">Add to Cart</button>
+							</div>
+						</div>
+						
+						<div class="email-addto-box">
+							<ul class="add-to-links">
+								<li> <a class="link-wishlist" href="#"><span>Add to Wishlist</span></a></li>
+								<li><span class="separator">|</span> <a class="link-compare" href="#"><span>Add to Compare</span></a></li>
+							</ul>
+							<p class="email-friend"><a href="#" class=""><span>Email to a Friend</span></a></p>
+                      </div>
+						<ul class="shipping-pro">
+							<li>Free Wordwide Shipping</li>
+							<li>30 Days Return</li>
+							<li>Member Discount</li>
+                        </ul>
+						
+					</div>	
+				</div>
+			</div>		
+			
+			<!---- ---------------------->
+			<div class="row">
+				<div class="product-collateral">
+					<div class="add_info">
+							<ul id="product-detail-tab" class="nav nav-tabs product-tabs">
+								<li class="active"> <a href="#product_tabs_description" data-toggle="tab"> Product Description </a> </li>
+								<li> <a href="#reviews_tabs" data-toggle="tab">Reviews</a> </li>
+							</ul>
+
+
+						  <div id="productTabContent" class="tab-content cont">
+								<div class="tab-pane fade in active" id="product_tabs_description">
+									<div class="col-sm-4" id="pdescriptionimg">
+										<img th:src="'assets/image/products/'+${detailproduct.imgname2}">
+									</div>
+									<div class="std col-sm-8">
+										<span id="thd">ID : </span><span id="tbd" th:text="${detailproduct.id}"></span><br>
+										<span id="thd">Category : </span><span id="tbd" th:text="${detailproduct.catename}"></span><br>
+										<span id="thd">Name : </span><span id="tbd" th:text="${detailproduct.name}"></span><br>
+										<span id="thd">RegDate : </span><span id="tbd" th:text="${detailproduct.id}"></span><br>
+										<span id="thd">Price : </span><span id="tbd" th:text="${detailproduct.price}"></span><br>
+										<span id="thd">Color : </span><span id="tbd" th:text="${detailproduct.color}"></span><br>
+
+										<span id="thd">Size : </span><span id="tbds" th:each="sd:${slist}" th:text="${sd.size}"></span>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+								    </div>
+								</div>
+
+								<div class="tab-pane fade" id="reviews_tabs">
+									<div class="eb-Reviews">
+										<div>
+											<h4 class="eb-Reviews-title">2 reviews for <span>Bacca Bucci Men's Running Shoes</span></h4>
+											    <div class="comment-text" th:each="reviewdetail:${rlist}" id="commentlist">
+													<div class="ratings">
+														<div class="rating-box">
+															<div style="width:100%" class="rating"></div>
+														</div>
+													</div>
+													<p class="meta">
+													<span th:text="${reviewdetail.uid}" id="userid">John Doe</span> 
+													<span> - </span><span th:text="${#dates.format(reviewdetail.regdate,'yyyy/MM/dd')}"></span>
+													</p>
+													<div class="description">
+														<p th:text="${reviewdetail.text}"></p>
+													</div>
+											    </div>
+										</div>
+									<div>
+								<div>
+								<div class="comment-respond">
+									<span class="comment-reply-title"><i class="fa fa-pencil-square-o"></i> Write a review </span>			
+									<form action="#" method="post" class="comment-form" novalidate="">
+										<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
+										<div class="comment-form-rating">
+											<label id="rating">Your rating</label>
+											<p class="stars">
+											<span>
+											<a class="star-1" href="#">1</a>
+											<a class="star-2" href="#">2</a>
+											<a class="star-3" href="#">3</a>
+											<a class="star-4" href="#">4</a>
+											<a class="star-5" href="#">5</a>
+											</span>
+											</p>
+										</div>
+										<p class="comment-form-comment">
+											<label>Your review <span class="required">*</span></label>
+											<textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
+										</p>
+										<p class="comment-form-author">
+										<label for="author">Name <span class="required">*</span></label> 
+										<input id="author" name="author" type="text" value="" size="30" required=""></p>
+										<p class="comment-form-email">
+										<label for="email">Email <span class="required">*</span></label> 
+										<input id="email" name="email" type="email" value="" size="30" required=""></p>
+										<p class="form-submit">
+										<input name="submit" type="submit" id="submit" class="btn submit" value="Submit"> 
+										</p>
+									</form>
+								</div><!-- #respond -->
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+						  </div>
+					</div>
+				</div>
+			</div>
+				
+			<!---- ---------------------->
+
+			
+		</div>	
+	</div>
+</div>
+</html>

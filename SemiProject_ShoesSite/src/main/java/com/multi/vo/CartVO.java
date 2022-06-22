@@ -13,22 +13,23 @@ import lombok.ToString;
 @ToString
 public class CartVO  {
 	private int id;
-	private int cnt;
+	private int count;
 	private String uid;
 	private int pid;
+	private int size;
+	private String pname;
+	private String pprice;
+	private String pimg1;
+	private int total;
 	
 	// cart insert, update
-	public CartVO(int id, int cnt, int pid) {
+	public CartVO(int id, int count, int pid) {
 		this.id = id;
-		this.cnt = cnt;
+		this.count = count;
 		this.pid = pid;
 	}
 	// cart delete
 	public CartVO(int id) {
 		this.id = id;
 	}
-	
-	
-	
-
 }

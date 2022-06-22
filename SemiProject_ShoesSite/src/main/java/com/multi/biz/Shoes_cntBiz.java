@@ -39,5 +39,9 @@ public class Shoes_cntBiz implements Biz<Integer,Shoes_cntVO> {
 	public List<Shoes_cntVO> get() throws Exception {
 		return dao.selectall();
 	}
+	
+	public List<Shoes_cntVO> getproduct(Integer k) throws Exception {
+		return dao.selectproduct(k);
+	}
 
 }

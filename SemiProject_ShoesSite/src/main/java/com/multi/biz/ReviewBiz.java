@@ -42,9 +42,21 @@ public class ReviewBiz implements Biz<Integer, ReviewVO> {
 
 	@Override
 	public List<ReviewVO> get() throws Exception {
-
 		return dao.selectall();
 	}
 	
+	
+	// 추가
+	public List<ReviewVO> getproduct(Integer k) throws Exception {
+		return dao.selectproduct(k);
+	}
+	
+	public int getstaravg(Integer k) throws Exception {
+		return dao.selectstaravg(k);
+	}
+	
+	public int getreviewcnt(Integer k) throws Exception {
+		return dao.selectreviewcnt(k);
+	}
 	
 }

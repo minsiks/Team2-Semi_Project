@@ -15,4 +15,5 @@ public interface Addr_listMapper {
 	public void update(Addr_listVO addr) throws Exception;
 	public Addr_listVO select(int id) throws Exception;
 	public List<Addr_listVO> selectall() throws Exception;
+	public Addr_listVO getcustinfo(String id) throws Exception;
 }

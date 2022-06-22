@@ -40,5 +40,11 @@ public class BuyBiz implements Biz<Integer, BuyVO> {
 		return dao.selectall();
 	}
 	
-
+	public int selectid() throws Exception{
+		return dao.selectid();
+	}
+	// 안원영 추가 
+	public List<BuyVO> selectUserBuy(String id) throws Exception {
+		return dao.selectUserBuy(id);
+	}
 }

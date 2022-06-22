@@ -40,5 +40,7 @@ public class Addr_listBiz implements Biz<Integer,Addr_listVO>{
 	public List<Addr_listVO> get() throws Exception {
 		return dao.selectall();
 	}
-
+	public Addr_listVO getcustinfo(String id) throws Exception {
+		return dao.getcustinfo(id);
+	}
 }

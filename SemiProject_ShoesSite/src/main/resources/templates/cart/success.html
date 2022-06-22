@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>Complete payment</h2>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="">checkout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="cart_page checkout_page">
+<!-- cart -->
+	<div id="cart" class="cart_section checkout_section">
+		<div class="container-fluid" id="checkout">
+			<!-- your shopping cart -->
+			<div class="row your_cart wow fadeInDown   animated">
+				<h2>your shopping cart</h2>
+				<div class="table-custom-responsive">
+					<table class="table-custom table-cart table-responsive">
+						<thead>
+							<tr>
+								<th>Product name</th>
+								<th>Price</th>
+								<th>Size</th>
+								<th>Quantity</th>
+							</tr>
+						</thead>
+							<tbody>
+								<tr th:each="c:${clist}">
+									<td><a class="table-cart-figure" href="checkout.html"><img th:src="'/assets/image/products/'+${c.pimg1}" alt="" width="146" height="132"></a><a id="pname" class="table-cart-link" href="#" th:text="${c.pname}">Natural Mineral Stone</a></td>
+									<td th:text="${c.pprice}+'원'">$125.00</td>
+									<td th:text="${c.size}">280</td>
+									<td>
+										<div class="table-cart-stepper">
+											<div class="stepper "><input class="form-input stepper-input" type="number" data-zeros="true" th:value="${c.count}" min="1" max="1000"><span class="stepper-arrow up"></span><span class="stepper-arrow down"></span></div>
+										</div>
+									</td>
+								</tr>
+								
+							</tbody>
+					</table>
+					<form>
+						<input id="oid" name= "oid" type="text" th:value="${bid}">
+						<input id="pid" name= "pid" type="text">
+						<input id="size" name= "size" type="hidden">
+						<input id="cnt" name= "cnt" type="hidden">
+					</form>
+				</div>
+			</div>	
+		</div>	
+	</div>	
+<!-- cart end-->	
+</div>
+</html>

@@ -15,4 +15,9 @@ public interface ReviewMapper {
 	public void update(ReviewVO review) throws Exception;
 	public ReviewVO select(int id) throws Exception;
 	public List <ReviewVO> selectall() throws Exception;
+	
+	// 추가
+	public List <ReviewVO> selectproduct(int pid) throws Exception;
+	public int selectstaravg(int pid) throws Exception;
+	public int selectreviewcnt(int pid) throws Exception;
 }

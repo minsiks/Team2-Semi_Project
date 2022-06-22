@@ -10,6 +10,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="cartVO">
 		SELECT * FROM CART
 	</select>
+	<select id="uidselect" parameterType="String" resultType="cartVO">
+		SELECT  c.uid as uid, p.name as pname,p.imgname1 as pimg1,p.price as pprice, c.count as count,c.size as size FROM cart c
+		INNER JOIN product p on c.pid=p.id
+		WHERE uid = #{id}
+	</select>
+	<select id="gettotal" parameterType="String" resultType="int">
+		SELECT  sum((p.price)*(c.count)) as total FROM cart c
+		INNER JOIN product p on c.pid=p.id
+		WHERE uid = #{id}
+	</select>
 	<insert id="insert" parameterType="cartVO">
 		INSERT INTO CART VALUES (#{id},#{cnt},#{pid})
 	</insert>

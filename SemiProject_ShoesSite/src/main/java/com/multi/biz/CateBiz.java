@@ -36,8 +36,6 @@ public class CateBiz implements Biz<Integer, CateVO> {
 	@Override
 	public CateVO get(Integer k) throws Exception {
 		return dao.select(k);
-		
-	
 	}
 
 	@Override

@@ -15,4 +15,5 @@ public interface Shoes_cntMapper {
 	public void update(Shoes_cntVO obj) throws Exception;
 	public Shoes_cntVO select(int id) throws Exception;
 	public List<Shoes_cntVO> selectall() throws Exception;
+	public List<Shoes_cntVO> selectproduct(int pid) throws Exception;
 }

@@ -1,0 +1,259 @@
+<meta charset="UTF-8">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<style>
+input[type=checkbox] {
+
+	transform : scale(1.5);
+
+}
+
+p{
+	font-size: large;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+input[name="cid"]+label{
+	display: inline-block;
+	width: 75px;
+	line-height: 20px;
+}
+
+input[name="param1"]{
+	text-align: right;
+}
+
+input[name="param2"]{
+	text-align: right;
+}
+
+input[name="color"] {
+	display: none;
+}
+
+input[name="color"]+label span{
+  display: inline-block;
+  width:40px; 
+  height: 40px;
+  cursor: pointer;
+  border-radius: 30px;
+  cursor:pointer;
+  border:solid 0.5px #c4c4c4;
+}
+input[name="color"]:checked + label span {
+  border : solid 5px #cbb18a;
+}
+
+input[name="size"] {display: none;}
+
+input[name="size"]+label span{
+  display: inline-block;
+  width: 50px; 
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  cursor:pointer;
+  border:solid 0.5px #c4c4c4;
+  line-height:35px;
+  text-align: center;
+  font-size: medium;
+}
+input[name="size"]:checked + label span {
+  background-color : #cbb18a;
+  text-align: center;
+}
+
+#category{
+	margin-bottom : 30px;
+}
+#price{
+	margin-bottom : 30px;
+}
+#color{
+	margin-bottom : 30px;
+}
+#size{
+	margin-bottom : 30px;
+}
+</style>
+
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>Men</h2> <!-- Men, Women, Kids -->
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/product/men">Men</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="products_page">
+<!-- products -->
+	<div id="products" class="products_section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="eb_right">
+					
+						<!-- 화면 왼쪽 필터 시작 -->
+					
+						<!-- category 체크박스 -->
+						<div id="category" class="category">
+						<h3>category</h3>
+						    <div class="form-check">
+					    	  <p><i class="fa fa-angle-right fa-lg"></i> 운동화</p>
+					    	  <input type="checkbox" name="cid" id="11" value="11">
+					    	  <label class="inline" for="11">스니커즈</label>
+						      <input type="checkbox" name="cid" id="12" value="12">
+					    	  <label class="inline" for="12">캔버스화</label>
+					    	  
+					    	  <p><i class="fa fa-angle-right fa-lg"></i> 스포츠화</p>
+					    	  <input type="checkbox" name="cid" id="21" value="21">
+					    	  <label class="inline" for="21">런닝화</label>
+						      <input type="checkbox" name="cid" id="22" value="22">
+					    	  <label class="inline" for="22">등산화</label>
+					    	  <input type="checkbox" name="cid" id="23" value="23">
+					    	  <label class="inline" for="23">축구화</label>
+					    	  
+					    	  <p><i class="fa fa-angle-right fa-lg"></i> 구두</p>
+					    	  <input type="checkbox" name="cid" id="31" value="31">
+					    	  <label class="inline" for="31">로퍼</label>
+						      <input type="checkbox" name="cid" id="32" value="32">
+					    	  <label class="inline" for="32">뮬/블로퍼</label>
+					    	  
+					    	  <p><i class="fa fa-angle-right fa-lg"></i> 샌들</p>
+					    	  <input type="checkbox" name="cid" id="41" value="41">
+					    	  <label class="inline" for="41">슬라이드</label>
+						      <input type="checkbox" name="cid" id="42" value="42">
+					    	  <label class="inline" for="42">아쿠아슈즈</label>
+					    	  <br>
+					    	  <input type="checkbox" name="cid" id="43" value="43">
+					    	  <label class="checkbox" for="43">스포츠샌들</label>
+					    	  
+					    	  <p><i class="fa fa-angle-right fa-lg"></i> 부츠</p>
+					    	  <input type="checkbox" name="cid" id="51" value="51">
+					    	  <label class="inline" for="51">앵클부츠</label>
+						      <input type="checkbox" name="cid" id="52" value="52">
+					    	  <label class="inline" for="52">미들부츠</label>
+						    </div>
+						</div>
+						<hr>
+						<!-- price 폼 -->
+						<div id="price" class="price">
+						<h3>price</h3>
+						  <div class="form-input">
+						    <label class="control-label col-sm-2" for="param1">Min:</label><input type="number" class="form-control-inline" id="param1" name="param1" placeholder="(원)"><br>
+						    <label class="control-label col-sm-2" for="param2">Max:</label><input type="number" class="form-control-inline" id="param2" name="param2" placeholder="(원)">
+						  </div>
+						</div>
+						<hr>
+						<!-- color 체크박스 -->
+						<div id="color" class="color">
+						<h3>color</h3>
+						  <div class="form-check">
+						  	<input type="checkbox" id="black" value="black" name="color">
+						  	<label for="black"><span style="background-color:black;"></span></label>
+						  	<input type="checkbox" id="white" value="white" name="color">
+						  	<label for="white"><span style="background-color:white;"></span></label>
+						  	<input type="checkbox" id="red" value="red" name="color">
+						  	<label for="red"><span style="background-color:#c30001;"></span></label>
+						  	<input type="checkbox" id="blue" value="blue" name="color">
+						  	<label for="blue"><span style="background-color:#3784d2;"></span></label>
+						  	<input type="checkbox" id="gray" value="gray" name="color">
+						  	<label for="gray"><span style="background-color:#ababab;"></span></label>
+						  </div>
+						</div>
+						<hr>
+						<!-- size 체크 박스 -->
+						<div id="size" class="size">
+						<h3>Size</h3>
+						  <div class="form-check">
+						  	<input type="checkbox" id="220" value="220" name="size">
+						  	<label for="220"><span>220</span></label>
+						  	<input type="checkbox" id="240" value="240" name="size">
+						  	<label for="240"><span>240</span></label>
+						  	<input type="checkbox" id="260" value="260" name="size">
+						  	<label for="260"><span>260</span></label>
+						  	<input type="checkbox" id="280" value="280" name="size">
+						  	<label for="280"><span>280</span></label>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<!-- 화면 왼쪽 필터 끝 -->
+				
+				
+				
+				<div class="col-sm-9">
+					<div class="eb_left">
+					<!-- product-list-top -->
+						<div class="product-list-top">
+							<div class="sort-by-wrapper">
+								  <div class="col-md-6 col-xs-6 sort">
+										<div class="form-group input-group input-group-sm wow fadeInDown pull-left">
+											<label class="input-group-addon" for="input-sort">Sort By:</label>
+											<div class="select-wrapper">
+												<select id="input-sort" class="form-control">
+													<option value="" selected="selected">Default</option>
+													<option value="">Name (A - Z)</option>	
+													<option value="">Name (Z - A)</option>
+													<option value="">Price (Low &gt; High)</option>
+													<option value="">Price (High &gt; Low)</option>
+													<option value="">Rating (Highest)</option>
+													<option value="">Rating (Lowest)</option>
+												</select>
+											</div>
+										</div>
+								  </div>
+							</div>
+
+							<div class="clear"></div>
+						</div>
+					<!-- product-list-top -->
+						<div class="col-sm-4" th:each="detail:${plist}" th:id="${detail.id}">
+							<div class="product-thumb">
+								<div class="image wow fadeInDown animated">
+									<a th:href="@{productdetail(id=${detail.id})}"><img class="wow fadeInDown animated" th:src="'assets/image/products/'+${detail.imgname1}" alt="Kundli Dosha" title="Kundli Dosha" width="100%"></a>
+									<div class="button-group">
+										<div class="inner">
+											
+											<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+											<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+											<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+										</div>
+									</div>
+								</div>
+								<div class="caption">
+									
+									<div class="rate-and-title">
+										<h4 class="wow fadeInDown animated" th:text="${detail.name}"><a th:href="">name</a></h4>
+										<div class="rating wow fadeInDown animated">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<div class="clear"></div>
+										</div>
+										<p class="price wow fadeInDown animated">
+											<span class="price" th:text="${detail.price}+'원'">price</span>  
+										</p>
+										<button type="button" class="btn wow fadeInDown animated" onclick="" title="Add to Cart"><span><i class="fa fa-shopping-cart"></i> Add to Cart</span></button>
+									</div>
+								</div>
+							</div>
+						</div>							
+					<!-- products end -->
+					</div>	
+				</div>
+				
+			</div>	
+		</div>	
+	</div>	
+	
+</div>
+</html>

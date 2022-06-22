@@ -22,6 +22,12 @@ public class ReviewVO {
 	private String filename;
 	private String uid;
 	
+	//star 평균
+	private int staravg;
+	
+	// review 카운트
+	private int count;
+	
 	//insert
 	public ReviewVO(int id, int pid, int star, String text, Date regdate, String uid) {
 		this.id = id;

@@ -2,12 +2,12 @@ package com.multi.biz;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.multi.frame.Biz;
 import com.multi.mapper.ProductMapper;
+import com.multi.vo.Filter;
 import com.multi.vo.ProductVO;
 @Service
 public class ProductBiz implements Biz<Integer, ProductVO> {
@@ -40,6 +40,8 @@ public class ProductBiz implements Biz<Integer, ProductVO> {
 		return dao.selectall();
 	}
 	
-
+	public List<ProductVO> getfilter(Filter obj) throws Exception {
+		return dao.selectfilter(obj);
+	}
 
 }

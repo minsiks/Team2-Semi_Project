@@ -15,4 +15,7 @@ public interface BuyMapper {
 	public void update(BuyVO obj) throws Exception;
 	public BuyVO select(int id) throws Exception;
 	public List<BuyVO> selectall() throws Exception;
+	public int selectid() throws Exception;
+	// 안원영 추가 
+	public List<BuyVO> selectUserBuy(String id) throws Exception;
 }

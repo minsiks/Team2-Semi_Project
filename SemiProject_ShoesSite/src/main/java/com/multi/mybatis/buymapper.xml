@@ -5,11 +5,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.BuyMapper">
 	
 	<insert id="insert" parameterType="buyVO">
-		INSERT INTO buy VALUES (NULL,#{uid},#{recipient},#{recipient_addr},#{recipient_phonenumber},#{request},#{price},SYSDATE())
+		INSERT INTO buy VALUES (NULL,#{uid},#{recipient},#{recipient_addr},#{recipient_addr_detail},#{recipient_phonenumber},#{request},#{price},SYSDATE())
 	</insert>
 	<update id="update" parameterType="buyVO">
 		UPDATE buy SET RECIPIENT=#{recipient},
 		RECIPIENT_ADDR=#{recipient_addr},
+		RECIPIENT_ADDR_DETAIL=#{recipient_addr_detail},
 		RECIPIENT_PHONENUMBER=#{recipient_phonenumber},
 		REQUEST=#{request} WHERE ID=#{id}
 	</update>
@@ -19,8 +20,23 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="select" parameterType="int" resultType="buyVO">
 		SELECT * FROM buy WHERE ID=#{id}
 	</select>
+	<select id="selectid" parameterType="int" resultType="int">
+		SELECT MAX(id) FROM buy
+	</select>
 	<select id="selectall" resultType="buyVO">
 		SELECT * FROM buy
+	</select>
+	<!-- 안원영 추가 -->
+	<select id="selectUserBuy" parameterType="String"
+		resultType="buyVO">
+		SELECT b.id, b.uid, b.recipient, b.recipient_addr, b.recipient_phonenumber,
+		b.request, b.price, b.regdate,
+		bd.pid , bd.size, bd.cnt,
+		p.name, p.price AS price_one,p.imgname1
+		FROM buy b
+		INNER JOIN buy_detail bd ON b.id = bd.oid
+		INNER JOIN product p ON p.id = bd.pid
+		WHERE b.uid = #{id};
 	</select>
 </mapper>
 

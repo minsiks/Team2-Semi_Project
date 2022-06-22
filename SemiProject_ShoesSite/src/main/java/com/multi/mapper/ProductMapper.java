@@ -2,10 +2,10 @@ package com.multi.mapper;
 
 import java.util.List;
 
-
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.multi.vo.Filter;
 import com.multi.vo.ProductVO;
 
 @Repository
@@ -17,5 +17,6 @@ public interface ProductMapper {
 	public ProductVO select(int id) throws Exception;
 	public List<ProductVO> selectall() throws Exception;
 	
-	
+	// 추가함수
+	public List<ProductVO> selectfilter(Filter obj) throws Exception;
 }
