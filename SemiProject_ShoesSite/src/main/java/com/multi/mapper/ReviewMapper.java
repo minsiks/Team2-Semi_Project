@@ -20,4 +20,9 @@ public interface ReviewMapper {
 	public List <ReviewVO> selectproduct(int pid) throws Exception;
 	public int selectstaravg(int pid) throws Exception;
 	public int selectreviewcnt(int pid) throws Exception;
+	
+	//안원영 추가 
+	public List<ReviewVO> selectuserall(String id) throws Exception;
+	//안원영 추가 
+	public void deleteuserid(String id) throws Exception;
 }

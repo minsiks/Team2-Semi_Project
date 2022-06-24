@@ -10,13 +10,24 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="buy_detailVO">
 		SELECT * FROM buy_detail
 	</select>
+	<!-- 김민식추가 -->
+	<select id="selectid" parameterType="int" resultType="buy_detailVO">
+		SELECT * FROM buy_detail WHERE oid = #{oid}
+	</select>
+	<select id="getbuy_detail" parameterType="String" resultType="buy_detailVO">
+		SELECT (SELECT max(id)FROM buy) AS oid, uid, pid, count as cnt, size FROM cart c where c.uid = #{uid}
+	</select>
 	<insert id="insert" parameterType="buy_detailVO">
 		INSERT INTO buy_detail VALUES (null,#{oid},#{pid},#{size},#{cnt})
 	</insert>
 	<update id="update" parameterType="buy_detailVO">
 		UPDATE buy_detail SET OID=#{oid},PID=#{pid},SIZE=#{size},CNT=#{cnt} WHERE ID=#{id}
 	</update>
+	<delete id="deletebuyid" parameterType="int">
+		DELETE FROM buy_detail WHERE OID=#{id}
+	</delete>
 	<delete id="delete" parameterType="int">
 		DELETE FROM buy_detail WHERE ID=#{id}
 	</delete>
+	
 </mapper>

@@ -36,6 +36,12 @@ public class Shoes_cntVO {
 		this.size = size;
 		this.cnt = cnt;
 	}
+
 	
-	
+	// checkcnt 추가 생성자 서예린 6/23 
+	public Shoes_cntVO(int pid, int size) {
+		super();
+		this.pid = pid;
+		this.size = size;
+	}
 }

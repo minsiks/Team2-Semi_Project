@@ -28,7 +28,10 @@ public class Filter {
 
 	// split 사용을 위해 변수 타입은 String(price는 배열로 받지 않으므로 int)
 
-// 필드
+	private int sortby; // 0 : 신상품순 / 1 : 높은가격순 / 2 : 낮은가격순 / 3 : 별점순
+	
+	
+// 필드 끝
 	
 
 	// 필터 타입 데이터를 아이디 변환한 뒤 배열에 넣음

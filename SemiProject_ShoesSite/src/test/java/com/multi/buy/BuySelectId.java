@@ -1,27 +1,27 @@
-package com.multi.cart;
+package com.multi.buy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CartBiz;
-import com.multi.vo.CartVO;
+import com.multi.biz.BuyBiz;
+import com.multi.vo.BuyVO;
 
 @SpringBootTest
-public class CartUpdateTests {
+class BuySelectId {
 
 	@Autowired
-	CartBiz biz;
+	BuyBiz biz;
 	
 	@Test
 	void contextLoads() {
-		CartVO c = new CartVO(5001, 1);
+		int obj ;
 		try {
-			biz.modify(c);
+			obj = biz.selectid();
+			System.out.println(obj);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		};
 	}
+
 }

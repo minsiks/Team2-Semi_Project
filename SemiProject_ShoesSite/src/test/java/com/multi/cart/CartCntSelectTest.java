@@ -5,23 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.multi.biz.CartBiz;
-import com.multi.vo.CartVO;
 
 @SpringBootTest
-public class CartUpdateTests {
+class CartCntSelectTest {
 
 	@Autowired
 	CartBiz biz;
 	
 	@Test
 	void contextLoads() {
-		CartVO c = new CartVO(5001, 1);
 		try {
-			biz.modify(c);
+			int list;
+			list = biz.selectcnt("id02");
+			System.out.println(list);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
+
 }

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.multi.frame.Biz;
 import com.multi.mapper.Buy_detailMapper;
-import com.multi.mapper.CustMapper;
 import com.multi.vo.Buy_detailVO;
-import com.multi.vo.CustVO;
 
 @Service("buy_detailbiz")
 public class Buy_detailBiz implements Biz<Integer,Buy_detailVO>{
@@ -41,5 +39,16 @@ public class Buy_detailBiz implements Biz<Integer,Buy_detailVO>{
 	public List<Buy_detailVO> get() throws Exception {
 		return dao.selectall();
 	}
+	// 김민식추가
+	public List<Buy_detailVO> selectid(Integer k) throws Exception{
+		return dao.selectid(k);
+	}
+	public List<Buy_detailVO> getbuy_detail(String id) throws Exception {
 
+		return dao.getbuy_detail(id);
+	}
+	// 안원영 추가 - 배송현황 주문취소 선택 
+	public void deletebuyid(Integer k) throws Exception {
+		dao.deletebuyid(k);
+	}
 }

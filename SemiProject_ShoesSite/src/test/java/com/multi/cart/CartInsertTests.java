@@ -15,7 +15,7 @@ CartBiz cartbiz;
 
 @Test
 void contextLoads() {
-	CartVO cart = new CartVO(5005,3,3001);
+	CartVO cart = new CartVO(2, "id02", 3003, 280);
 		try {
 			cartbiz.register(cart);
 			System.out.println(cart);

@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.multi.vo.Buy_detailVO;
-import com.multi.vo.CustVO;
 
 @Repository
 @Mapper
@@ -16,4 +15,8 @@ public interface Buy_detailMapper {
 	public void update(Buy_detailVO cust) throws Exception;
 	public Buy_detailVO select(int id) throws Exception;
 	public List<Buy_detailVO> selectall() throws Exception;
+	//김민식추가
+	public List<Buy_detailVO> selectid(int oid);
+	public List<Buy_detailVO> getbuy_detail(String id) throws Exception;
+	public void deletebuyid(int id) throws Exception;
 }

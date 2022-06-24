@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.multi.frame.Biz;
 import com.multi.mapper.CartMapper;
+import com.multi.vo.Buy_detailVO;
 import com.multi.vo.CartVO;
 
 @Service("cartbiz")
@@ -49,4 +50,21 @@ public class CartBiz implements Biz<Integer, CartVO> {
 	public int gettotal(String id) throws Exception{
 		return dao.gettotal(id);
 	}
+	// 김민식 추가 메서드 6/24
+	public void deleteall(String uid) throws Exception {
+		dao.deleteall(uid);
+		
+	}
+	// 추가 메서드 6/23
+	public int checkcart(CartVO v) throws Exception{
+		return dao.checkcart(v);
+	}
+	// 안원영 추가 회원탈퇴 - uid로된 정보 모두 삭제 
+	public void deleteuserid(String id) throws Exception{
+		dao.deleteuserid(id);
+	}
+	public int selectcnt(String uid) throws Exception{
+		return dao.selectcnt(uid);
+	}
+	
 }

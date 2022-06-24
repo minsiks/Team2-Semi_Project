@@ -1,4 +1,6 @@
 <!-- 쇼핑정보 - 주문/배송현황 클릭시 실행 -->
+
+<meta charset="UTF-8">
 <style>
 h2, h3, h4 {
 	color: black;
@@ -17,8 +19,17 @@ h2, h3, h4 {
 	margin: 10px;
 }
 </style>
+<script>
 
-<meta charset="UTF-8">
+
+
+$(document).ready(function(){
+
+	
+	
+});
+
+</script>
 
 <div class="row">
 	<h2>주문내역 / 배송현황</h2>
@@ -27,7 +38,7 @@ h2, h3, h4 {
 </div>
 <hr>
 
-<div class="block-sm login_box" th:each="buy : ${buylist}">
+<div class="block-sm login_box" th:if="${not #lists.isEmpty(buylist)}" th:each="buy : ${buylist}" >
 	<div class="container-fluid" id="buy">
 		<div class="row">
 			<div class="col-sm-4">
@@ -46,7 +57,8 @@ h2, h3, h4 {
 		<hr>
 		<div class="row">
 			<div class="col-sm-6">
-				<img th:src="'/assets/image/'+'nike.png'">
+				<img th:src="'/assets/image/products/'+${buy.imgname1}">
+				<div th:text="${buy.imgname1}"></div>
 			</div>
 			<div class="col-sm-4">
 				<div class="container-fluid" id="buy_product">
@@ -68,8 +80,12 @@ h2, h3, h4 {
 		</div>
 		<div class="row">
 			<div class="row text-center">
-				<button class="btn">주문취소</button>
+				<button class="btn" id="buy_remove" th:onclick="location.href='buy_remove?id=[[${buy.id}]]'">주문취소</button>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div th:unless="${not #lists.isEmpty(buylist)}" >
+주문한 상품이 없습니다. 
 </div>

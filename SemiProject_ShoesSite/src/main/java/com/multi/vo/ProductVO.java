@@ -31,6 +31,8 @@ public class ProductVO {
 	private String review_uid;
 	private String review_text;
 	private String catename;
+	// 추가필드 6/24
+	private double staravg;
 	
 	public ProductVO(String name, int price ,String imgname1, String imgname2, int cid, String color, String gender) {
 		super();

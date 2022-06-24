@@ -1,6 +1,13 @@
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body
 {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'twayair', sans-serif;
     font-size: 14px;
     line-height: 26px;
     color: #797979;
@@ -14,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin:0 0 15px 0;
 	padding:0;
 	text-transform:capitalize;
-	font-family: 'Comic Neue', cursive;
+	font-family: 'twayair', cursive;
 }
 
 h1 {
@@ -1213,7 +1220,7 @@ html body .dropdown-menu>li>a:focus, html body .dropdown-menu>li>a:hover {
     border-left: 0px solid transparent;
     border-right: 0px solid transparent;
     font-size: 40px;
-    font-family: Roboto;
+    font-family: twayair;
     font-weight: 300;
     outline: none;
     padding: 10px;
@@ -2035,7 +2042,7 @@ html body .owl-carousel {
     content:"\f24e";
 }
 #products.products_section .product-thumb .button-group button:before {
-    font-family: FontAwesome;
+    font-family: twayair;
     display: inline-block;
     vertical-align: middle;
     line-height: inherit;
@@ -2927,7 +2934,7 @@ breadcrumb CSS
 }
 #products_products .single_products_left_side .link-wishlist:before {
     content: "\f004";
-    font-family: FontAwesome;
+    font-family: twayair;
     font-size: 13px;
     margin-right: 3px;
 }
@@ -2949,7 +2956,7 @@ breadcrumb CSS
 }
 #products_products .single_products_left_side .link-compare:before {
     content: "\f012";
-    font-family: FontAwesome;
+    font-family: twayair;
     font-size: 13px;
     margin-right: 3px;
 }
@@ -2978,7 +2985,7 @@ breadcrumb CSS
 }
 #products_products .single_products_left_side .email-friend a:before {
 	content: "\f0e0";
-	font-family: FontAwesome;
+	font-family: twayair;
 	font-size: 14px;
 	margin-right: 6px;
 }
@@ -3159,7 +3166,7 @@ ul.shipping-pro li {
 	width:auto
 }
 .comment-respond .stars a:before {
-    font-family: 'FontAwesome';
+    font-family: 'twayair';
     font-size: 12px;
     display: inline-block;
     letter-spacing: 2px;
@@ -3347,7 +3354,7 @@ em.required
     display: inline-block;
     padding: 0;
     font-weight: 700;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'twayair', sans-serif;
 }
 .not_found h1 span
 {

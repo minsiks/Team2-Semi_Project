@@ -39,7 +39,7 @@ public class BuyBiz implements Biz<Integer, BuyVO> {
 	public List<BuyVO> get() throws Exception {
 		return dao.selectall();
 	}
-	
+	// 김민식추가
 	public int selectid() throws Exception{
 		return dao.selectid();
 	}

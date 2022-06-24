@@ -4,13 +4,20 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.Shoes_cntMapper">
 	
+	<!-- 추가 쿼리문 서예린 6/23 -->
+	<select id="checkcnt" parameterType="shoes_cntVO" resultType="int">
+		SELECT cnt FROM shoes_cnt
+		WHERE PID=#{pid} AND SIZE=#{size}
+	</select>
+
+
 	<!-- 추가 쿼리문 -->
 	<select id="selectproduct" parameterType="int" resultType="shoes_cntVO">
 		SELECT s.id, s.pid, p.name, s.size, s.cnt FROM shoes_cnt s 
 		INNER JOIN product p ON s.pid=p.id 
-		WHERE s.pid=#{id}
+		WHERE s.pid=#{pid}
+		ORDER BY s.size
 	</select>
-	
 	
 	<insert id="insert" parameterType="shoes_cntVO">
 		INSERT INTO shoes_cnt VALUES (NULL,#{pid},#{size},#{cnt})

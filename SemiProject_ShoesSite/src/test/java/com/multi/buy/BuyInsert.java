@@ -15,7 +15,7 @@ class BuyInsert {
 	
 	@Test
 	void contextLoads() {
-		BuyVO obj = new BuyVO("id01", "kim", "Seoul", "010-1234-1234", "hello", 1000);
+		BuyVO obj = new BuyVO("id01", "kim", "Seoul","Guro", "010-1234-1234", "hello", 1000);
 		try {
 			biz.register(obj);
 		} catch (Exception e) {

@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<!-- 추가 쿼리문 -->
 	<select id="selectproduct" parameterType="int" resultType="reviewVO">
-		SELECT * FROM REVIEW WHERE PID=#{pid}
+		SELECT * FROM REVIEW WHERE PID=#{pid} ORDER BY id DESC
 	</select>
 	<select id="selectstaravg" parameterType="int" resultType="int">
 		SELECT AVG(star) AS staravg FROM review
@@ -17,8 +17,20 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE PID=#{pid}
 	</select>
 	
-	
-	
+	<!-- 안원영 추가 - mypage(나의 리뷰 모아보기) 에서사용 --><!-- 유저 id로된 review 모두가져오기 -->
+	<select id="selectuserall" parameterType="String"
+		resultType="reviewVO">
+		SELECT r.id, r.pid, r.star, r.text, r.regdate, r.filename,
+		r.uid,
+		p.name, p.price, p.imgname1, p.color
+		FROM review r
+		INNER JOIN product p ON p.id = r.pid
+		WHERE UID=#{id}
+	</select>
+	<!-- 안원영 추가 회원탈퇴 삭제  -->
+	<delete id="deleteuserid" parameterType="String">
+		DELETE FROM REVIEW WHERE UID=#{id}
+	</delete>
 	
 	<select id="select" parameterType="String" resultType="reviewVO">
 		SELECT * FROM REVIEW WHERE ID=#{id}

@@ -64,23 +64,6 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping("/products")
-	public String products(Model m) {
-		m.addAttribute("center","products");
-		m.addAttribute("footer","footer");
-		m.addAttribute("header","header");
-		return "index";
-	}
-
-
-	@RequestMapping("/mypages")
-	public String mypage(Model m) {
-		m.addAttribute("center","");
-		m.addAttribute("footer","footer");
-		m.addAttribute("header","header");
-		return "index";
-	}
-
 	@RequestMapping("/contact_us")
 	public String contact(Model m) {
 		m.addAttribute("center","contact_us");

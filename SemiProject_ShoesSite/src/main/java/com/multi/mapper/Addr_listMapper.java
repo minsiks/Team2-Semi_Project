@@ -16,4 +16,8 @@ public interface Addr_listMapper {
 	public Addr_listVO select(int id) throws Exception;
 	public List<Addr_listVO> selectall() throws Exception;
 	public Addr_listVO getcustinfo(String id) throws Exception;
+	// 안원영 추가 
+	public List<Addr_listVO> getcustinfoAll(String id) throws Exception;
+	// 안원영 추가 
+	public void deleteuserid(String id) throws Exception;
 }

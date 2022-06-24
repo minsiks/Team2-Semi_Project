@@ -12,6 +12,8 @@
 	href="/assets/vendor/owl.carousel/assets/owl.carousel.css">
 <link rel="stylesheet" href="/assets/vendor/wow/animate.css">
 
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css" rel="stylesheet">
+
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,900&display=swap"
 	rel="stylesheet">
@@ -30,9 +32,11 @@
 <script type="text/javascript" src="/assets/vendor/slider-js/slideWiz.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/assets/vendor/slider-js/slideWiz.css">
-<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/js/custom.js"></script>
-
+	<!-- 주소 API 사용  -->
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<!-- iamport.payment.js -->
+  	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	new WOW().init();
 	wow = new WOW({
@@ -49,17 +53,18 @@
 </head>
 <body>
 	<!-- Header start -->
-	<div th:insert="header"></div>
+	<div th:insert="${header} ? ${header} : header"></div>
+
 	<!-- Header End -->
 	<!-- silder -->
 
 	<div th:insert="${center} ? ${center} : center"></div>
 
 	<!-- Footer Section -->
-	<div th:insert="footer"></div>
+	<div th:insert="${footer} ? ${footer} : footer"></div>
 
 	<!-- Footer Section End -->
-
+	
 	<!-- back-to-top scrtion -->
 	<div class="top_button">
 		<a class="back-to-top" style="cursor: pointer;" id="top-scrolltop"><i
@@ -161,6 +166,8 @@
 	</script>
 
 
+	<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/js/custom.js"></script>
 
 	<!-- script files -->
 </body>

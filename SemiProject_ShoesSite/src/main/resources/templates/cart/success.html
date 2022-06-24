@@ -24,37 +24,30 @@
 		<div class="container-fluid" id="checkout">
 			<!-- your shopping cart -->
 			<div class="row your_cart wow fadeInDown   animated">
-				<h2>your shopping cart</h2>
+				<h2>Complete payment</h2>
 				<div class="table-custom-responsive">
+					
 					<table class="table-custom table-cart table-responsive">
 						<thead>
 							<tr>
-								<th>Product name</th>
-								<th>Price</th>
-								<th>Size</th>
-								<th>Quantity</th>
+								<th>주문상세번호</th>
+								<th>주문번호</th>
+								<th>제품번호</th>
+								<th>사이즈</th>
+								<th>수량</th>
 							</tr>
 						</thead>
 							<tbody>
-								<tr th:each="c:${clist}">
-									<td><a class="table-cart-figure" href="checkout.html"><img th:src="'/assets/image/products/'+${c.pimg1}" alt="" width="146" height="132"></a><a id="pname" class="table-cart-link" href="#" th:text="${c.pname}">Natural Mineral Stone</a></td>
-									<td th:text="${c.pprice}+'원'">$125.00</td>
-									<td th:text="${c.size}">280</td>
-									<td>
-										<div class="table-cart-stepper">
-											<div class="stepper "><input class="form-input stepper-input" type="number" data-zeros="true" th:value="${c.count}" min="1" max="1000"><span class="stepper-arrow up"></span><span class="stepper-arrow down"></span></div>
-										</div>
-									</td>
+								<tr th:each="b:${bidlist}">
+									<td><a class="table-cart-link" href="#" th:text="${b.id}">Natural Mineral Stone</a></td>
+									<td id="price" th:text="${b.oid}">$125.00</td>
+									<td th:text="${b.pid}">280</td>
+									<td th:text="${b.size}">280</td>
+									<td th:text="${b.cnt}"></td>
 								</tr>
 								
 							</tbody>
 					</table>
-					<form>
-						<input id="oid" name= "oid" type="text" th:value="${bid}">
-						<input id="pid" name= "pid" type="text">
-						<input id="size" name= "size" type="hidden">
-						<input id="cnt" name= "cnt" type="hidden">
-					</form>
 				</div>
 			</div>	
 		</div>	

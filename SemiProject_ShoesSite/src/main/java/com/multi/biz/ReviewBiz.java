@@ -58,5 +58,14 @@ public class ReviewBiz implements Biz<Integer, ReviewVO> {
 	public int getreviewcnt(Integer k) throws Exception {
 		return dao.selectreviewcnt(k);
 	}
+	// 안원영 추가 mypage ( 리뷰 모아보기 ) 
+	public List<ReviewVO> selectuserall(String id) throws Exception {
+		return dao.selectuserall(id);
+	}
+	
+	// 안원영 추가 회원탈퇴
+	public void deleteuserid(String id) throws Exception{
+		dao.deleteuserid(id);
+	}
 	
 }

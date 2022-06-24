@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  	<!-- iamport.payment.js -->
-  	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+  	
 <script>
+
+
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -26,15 +26,17 @@
     }
     function payment(data){
     	IMP.init('imp94826430');
-    	var name = $('#pname').text();
+    	var count = $('#cnt').val();
+    	var name = $('#pname').text()+"외"+count+"개";
+    	var total = $('#total').val();
 	  	//결제시 전달되는 정보
 		IMP.request_pay({
 				    pg : 'inicis', 
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 				    name : name /*상품명*/,
-				    amount : 1000/*상품 가격*/, 
-				    buyer_name : '$(#cname).val()',
+				    amount : total/*상품 가격*/, 
+				    buyer_name : $('#cname').val(),
 				    buyer_tel : '010-1234-5678'/*구매자 연락처*/,
 				    buyer_addr : '서울특별시 강남구 삼성동'/*구매자 주소*/,
 				}, function(rsp) {
@@ -46,9 +48,10 @@
 				        msg += '결제 금액 : ' + rsp.paid_amount;
 				        msg += '카드 승인번호 : ' + rsp.apply_num;
 				        $('#buy').attr({
-							'method':'post',
+				        	'method':'post',
 							'action':'buyimpl'
-						});
+				        });
+				      //form 두개 보내기 위함
 						$('#buy').submit();
 				        result ='0';
 				    } else {
@@ -62,6 +65,7 @@
 				    alert(msg);
 				});
     }
+
 $(document).ready(function(){
 
 	$('#check').click(function(){
@@ -78,6 +82,7 @@ $(document).ready(function(){
 		
 		payment();
 	});
+	
 });
 
 </script>
@@ -89,7 +94,7 @@ $(document).ready(function(){
 			<div class="breadcrumb-content">
 				<h2>checkout</h2>
 				<ul>
-					<li><a href="index.html">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li><a href="">checkout</a></li>
 				</ul>
 			</div>
@@ -274,7 +279,8 @@ $(document).ready(function(){
 									</tr>
 								  </tbody>
 							</table>
-							
+							<input id="cnt" type="hidden" th:value="${cnt}">
+							<input id="total" type="hidden" th:value="${total}">
 							<a id="confirm" class="btn">Confirm Order</a>
 						</div>
 					</div>

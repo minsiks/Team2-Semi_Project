@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="kr">
+<meta charset="UTF-8">
 <style>
 #userid{
 	font-weight: bold;
@@ -17,6 +16,7 @@
 
 #size{
 	margin-top: 40px;
+	margin-bottom: 30px;
 }
 
 input[type="radio"] {display: none;}
@@ -77,39 +77,74 @@ input[type="radio"]:disabled+ label{
 }
 
 </style>
-<script>
+<script th:inline="javascript">
+function addcart(pid){
+	var uid = $('#uid').val();
+	var count = $('#qty').val();
+	var size = $('input[type="radio"]:checked').val();
 
-$(document).ready(function(){
-	$('#additional_silder_products_images').owlCarousel({	
-		items:5,
-		itemsDesktop:[1199,3],
-		itemsDesktopSmall:[992,2],
-		itemsTablet:[768,3],
-		itemsMobile:[600,2],
-		autoPlay: 6000,
-		pagination: false,
-		navigation: true,
-		navigationText: ['<i class="fa fa-angle-left fa-5x"></i>', '<i class="fa fa-angle-right fa-5x"></i>']
+	$.ajax({
+		url:'/addcart',
+		data:{'uid':uid, 'pid':pid, 'count':count, 'size':size},
+		async:false,
+		success:function(msg){
+			// 재고 문제일때 alert
+			if (msg === "상품의 재고가 선택한 수량보다 많습니다."){
+				alert(msg);
+			
+			// 그외에 confirm
+			}else{
+				var c = confirm(msg);
+				if(c==true){
+					location.href='/cart?id='+uid;
+				}
+			}
+		}
+	});
+}
+
+$(document).ready(function() {
+	$('#minus').click(function() {
+		var result = document.getElementById('qty'); 
+		var qty = result.value; 
+		if( !isNaN( qty ) && qty > 0 ) {
+			result.value--;
+		}
+		return false;
+	});
+	
+	
+	$('#plus').click(function() {
+		var result = document.getElementById('qty'); 
+		var qty = result.value; 
+		if( !isNaN( qty )) {
+			result.value++;
+		}
+		return false;
+		
+	});
+	
+	
+	$('#addcart').click(function() {
+		var c = $('input[type="radio"]:checked').val();
+		var q = $('#qty').val();
+		
+		if(c == '' || c == null || c == undefined || c == 0 ){// id값이 공백일 경우
+			$('#size_span').text('사이즈를 선택하세요.');	
+			$('#size_span').css('color','red');	
+			$('#border').css('border','solid 2px red');
+		}else{
+			if( q=='' || q==null || q==undefined || q<=0 ){
+				$('#qty').focus();
+			}else{
+				var pid = [[${detailproduct.id}]];
+				addcart(pid);
+			}
+		}
 	});
 });
+	
 
-$(document).ready(function(){
-	$('#related_product').owlCarousel({	
-		items: 4,
-		itemsDesktop:[1199,3],
-		itemsDesktopSmall:[992,3],
-		itemsTablet:[768,2],
-		itemsMobile:[450,1],
-		autoPlay: 10000,
-		pagination: false,
-		navigation: true,
-		navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>']
-	});
-});
-
-$(window).load(function() {
-	$('.sp-wrap').smoothproducts();
-});
 
 </script>
 <!-- script files -->
@@ -142,7 +177,7 @@ $(window).load(function() {
 								</div>
 							</div>
 							
-							<!-- 제품 썸네일 이미지외의 다른 이미지 슬라이드  -->
+							<!-- 추천 제품 슬라이드  -->
 							<!-- <div class="sp-wrap">
 								<div id="additional_silder_products_images" class="owl-carousel">
 									<div class="item">
@@ -205,29 +240,33 @@ $(window).load(function() {
 							</div>
 						</div>
 						
-						<!-- 사이즈 버튼 -->
-						<div id="size" class="size">
-						  <h3>Size</h3>
-						  <div class="form-radio" th:each="sizedetail:${slist}">
-						  	<input type="radio" th:id="${sizedetail.size}" th:value="${sizedetail.size}" name="size">
-						  	<label th:for="${sizedetail.size}" th:text="${sizedetail.size}"></label>
-						  </div>
-						</div>
-						
-						<!-- 수량 버튼 -->
-						<div class="add-to-box">
+						<!-- 사이즈 및 수량 선택하여 카트에 넣기 -->
+						<div class="add-to-box" th:if="${session.user!=null}">
 							<div class="add-to-cart">
-								<div class="pull-left">
-									<div class="custom pull-left">
-										<button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) && qty > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
-										<input type="number" class="input-text qty" title="Qty" value="1" maxlength="3" id="qty" name="count">
-										<button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
+								<div class="pull-left" id="cart_form">
+									<div id="size" class="size">
+									  <h3>Size</h3>
+									  <div id="border">
+									  <div class="form-radio" th:each="sizedetail:${slist}">
+									  	<input type="radio" th:id="${sizedetail.size}" th:value="${sizedetail.size}" name="size">
+									  	<label th:for="${sizedetail.size}" th:text="${sizedetail.size}"></label>
+									  </div>
+									  </div>
+									  <div><span id="size_span"></span></div>
 									</div>
+									<div class="custom pull-left">
+										<input type="hidden" th:value=${session.user.id} id="uid" name="uid">
+										<input type="hidden" th:value="${detailproduct.id}" id="pid" name="pid">
+										<button class="reduced items-count" type="button" id="minus"><i class="fa fa-minus">&nbsp;</i></button>
+											<input type="number" class="input-text qty" title="Qty" max="5" maxlength="1" value="1" id="qty" name="count">
+										<button class="increase items-count" type="button" id="plus"><i class="fa fa-plus">&nbsp;</i></button>
+									</div>
+									<button id="addcart" class="btn btn-cart" title="Add to Cart" type="button">Add to Cart</button>
 								</div>
-								<button onclick="productAddToCartForm.submit(this)" class="btn btn-cart" title="Add to Cart" type="button">Add to Cart</button>
 							</div>
 						</div>
 						
+					
 						<div class="email-addto-box">
 							<ul class="add-to-links">
 								<li> <a class="link-wishlist" href="#"><span>Add to Wishlist</span></a></li>
@@ -238,7 +277,6 @@ $(window).load(function() {
 						<ul class="shipping-pro">
 							<li>Free Wordwide Shipping</li>
 							<li>30 Days Return</li>
-							<li>Member Discount</li>
                         </ul>
 						
 					</div>	
@@ -264,7 +302,7 @@ $(window).load(function() {
 										<span id="thd">ID : </span><span id="tbd" th:text="${detailproduct.id}"></span><br>
 										<span id="thd">Category : </span><span id="tbd" th:text="${detailproduct.catename}"></span><br>
 										<span id="thd">Name : </span><span id="tbd" th:text="${detailproduct.name}"></span><br>
-										<span id="thd">RegDate : </span><span id="tbd" th:text="${detailproduct.id}"></span><br>
+										<span id="thd">RegDate : </span><span id="tbd" th:text="${#dates.format(detailproduct.regdate,'yyyy/MM/dd')}"></span><br>
 										<span id="thd">Price : </span><span id="tbd" th:text="${detailproduct.price}"></span><br>
 										<span id="thd">Color : </span><span id="tbd" th:text="${detailproduct.color}"></span><br>
 
@@ -276,7 +314,7 @@ $(window).load(function() {
 								<div class="tab-pane fade" id="reviews_tabs">
 									<div class="eb-Reviews">
 										<div>
-											<h4 class="eb-Reviews-title">2 reviews for <span>Bacca Bucci Men's Running Shoes</span></h4>
+											<h4 class="eb-Reviews-title" th:text="${reviewcount}+' reviews for '+${detailproduct.name}"></h4>
 											    <div class="comment-text" th:each="reviewdetail:${rlist}" id="commentlist">
 													<div class="ratings">
 														<div class="rating-box">
@@ -341,4 +379,3 @@ $(window).load(function() {
 		</div>	
 	</div>
 </div>
-</html>

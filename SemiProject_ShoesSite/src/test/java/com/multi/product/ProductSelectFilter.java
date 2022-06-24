@@ -18,7 +18,7 @@ class ProductSelectFilter {
 	
 	@Test
 	void contextLoads() {
-		Filter f = new Filter("GC", "Men", "12,11", 0, 0, null, null);
+		Filter f = new Filter("GC", "Men", "12,11", 0, 0, null, null,2);
 		
 		// split으로 쪼개서 배열에 넣은 각 카테고리별 체크항목들이 배열에 잘 들어갔는지 확인용
 		for (String str : f.getCidArr()) {

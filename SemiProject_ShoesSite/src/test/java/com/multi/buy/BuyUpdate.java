@@ -15,7 +15,7 @@ class BuyUpdate {
 	
 	@Test
 	void contextLoads() {
-		BuyVO obj = new BuyVO(2005, "seo", "updatetest", "010", "hello");
+		BuyVO obj = new BuyVO(2005, "seo", "updatetest","guro", "010", "hello");
 		try {
 			biz.modify(obj);
 		} catch (Exception e) {
