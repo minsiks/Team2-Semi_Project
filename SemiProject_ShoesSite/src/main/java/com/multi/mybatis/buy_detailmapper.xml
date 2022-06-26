@@ -29,5 +29,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		DELETE FROM buy_detail WHERE ID=#{id}
 	</delete>
+	<!-- 06.24 안원영추가 buy_detail페이지 -->
+	<select id="selectdetailproduct" parameterType="int"
+		resultType="buy_detailVO">
+		SELECT b.id, b.oid, b.pid, b.size, b.cnt,
+		p.name, p.price, p.imgname1, p.color, p.gender
+		FROM buy_detail b
+		INNER JOIN product p ON b.pid = p.id
+		WHERE oid = #{oid}
+	</select>
 	
 </mapper>

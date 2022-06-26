@@ -5,11 +5,21 @@
 	<meta charset="utf-8">
 <script>
 //안원영 
-function update_num(c,count) {
-	
-	//<td th:id="'total'+${c.id}">280</td>
-	$('#total'+c.id).text(c.pprice * $(count).val());//t
+var num;
+var result = 0;
+function getsum(){
+	var sum = 0;
+	$('[name="to"]').each(function(){sum+=$(this).val()*1});
 
+    $("#result").text(sum+'원');
+}
+function update_num(c,count) {
+	//<td th:id="'total'+${c.id}">280</td>
+	$('#total'+c.id).text(c.pprice * $(count).val()+'원');//t
+	$('#to'+c.id).val(c.pprice * $(count).val());//t
+	$('#co'+c.id).val($(count).val());//t
+	var num = $('#to'+c.id).val();
+	getsum();
 }
 function gettotal(){
 	var price = $('#price').text();
@@ -27,24 +37,27 @@ function gettotal(){
 	});
 }
 var list = $('#clist');
-
 $(document).ready(function(){
-	
 	gettotal();
 	$('#count').click(function(){
 		gettotal();
-		function update_num(c,count) {
-			
-			//<td th:id="'total'+${c.id}">280</td>
-			$('#total'+c.id).text(c.pprice * $(count).val());//t
+		$('[name="deletebtn"]').click(function(){
+			alert('이 상품을 장바구니에서 제외하겠습니까?');
+		});
+		
+	});
+	$('[name="count"]').click();
+	getsum();
 
-		}
+	$('#btn').click(function(){
+		$('.cntupdate').attr({
+			'method':'post',
+			'action':'/cart/update'
+		});
+		$('.cntupdate').submit();
 	});
-	$('[name="deletebtn"]').click(function(){
-		alert('이 상품을 장바구니에서 제외하겠습니까?');
-	});
-	
 });
+
 </script>
 </head>
 <body>
@@ -87,7 +100,7 @@ $(document).ready(function(){
 								<td>
 									<div class="table-cart-stepper">
 										<div class="stepper ">
-										<input th:id="count" class="form-input stepper-input"
+										<input name="count" th:id="count" class="form-input stepper-input"
 													type="number" data-zeros="true" th:value="${c.count}"
 													th:onclick="update_num([[${c}]],this)" min="1" max="1000"><span
 													class="stepper-arrow up"></span><span
@@ -95,7 +108,10 @@ $(document).ready(function(){
 													</div>
 									</div>
 								</td>
-								<td th:id="'total'+${c.id}">10000</td>
+								<td name="total" th:id="'total'+${c.id}">10000</td>
+								<input name="to" type="hidden" th:id="'to'+${c.id}">	
+														
+								
 								<td><a name="deletebtn" type="button" class="btn btn-danger" hret="#" th:href="@{/cart/delete(id=${c.id})}">Delete</a></td>
 							</tr>
 							
@@ -103,7 +119,12 @@ $(document).ready(function(){
 					</table>
 					<h2 th:if="${clist==null}">Your shopping cart is empty</h2>
 				</div>
-
+				<form class="cntupdate" commandName="CartVO">
+					<div th:each="c:${clist}">
+						<input th:id="id+${c.id}" type="hidden" th:name="cartlist[+${cStat.index}+].id" th:value="${c.id}">
+						<input th:id="co+${c.id}" type="hidden" th:name="cartlist[+${cStat.index}+].count" th:value="${c.count}">	
+					</div>						
+				</form>	
 				<div class="group-xl group-justify  wow fadeInDown animated">
 					<div>
 						<form class="eb-form eb-mailform eb-form-inline eb-form-coupon" novalidate="novalidate">
@@ -120,10 +141,11 @@ $(document).ready(function(){
 							<div>
 							  <div class="group-md group-middle">
 								<div class="heading-5 font-weight-medium text-gray-500">Total</div>
-								<div class="heading-3 font-weight-normal" th:if="${total != null}" th:text="${total}+'원'">$175</div>
+								<div class="heading-3 font-weight-normal" th:if="${total != null}" th:value="${total}"  th:text="${total}+'원'" id="result">$175</div>
+								<input id="sum" th:value="${total}" type="hidden">
 								<div class="heading-3 font-weight-normal" th:if="${total == null}" th:text="0원">제품을 장바구니에 넣어주세요!</div>
 							  </div>
-							</div><a class="btn" href="/cart/checkout">Proceed to checkout</a>
+							</div><a id="btn" class="btn" href="#">Proceed to checkout</a>
 						</div>
 					</div>
 				</div>

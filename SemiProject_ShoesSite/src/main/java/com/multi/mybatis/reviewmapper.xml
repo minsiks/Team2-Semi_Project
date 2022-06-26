@@ -4,20 +4,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.ReviewMapper">
 	
-	<!-- 추가 쿼리문 -->
 	<select id="selectproduct" parameterType="int" resultType="reviewVO">
 		SELECT * FROM REVIEW WHERE PID=#{pid} ORDER BY id DESC
 	</select>
+	
+	<!-- 6/24 수정 -->
 	<select id="selectstaravg" parameterType="int" resultType="int">
-		SELECT AVG(star) AS staravg FROM review
+		SELECT ROUND(AVG(star)) AS staravg FROM review
 		WHERE PID=#{pid}
 	</select>
+	
 	<select id="selectreviewcnt" parameterType="int" resultType="int">
 		SELECT COUNT(id) AS count FROM review
 		WHERE PID=#{pid}
 	</select>
 	
-	<!-- 안원영 추가 - mypage(나의 리뷰 모아보기) 에서사용 --><!-- 유저 id로된 review 모두가져오기 -->
 	<select id="selectuserall" parameterType="String"
 		resultType="reviewVO">
 		SELECT r.id, r.pid, r.star, r.text, r.regdate, r.filename,
@@ -27,10 +28,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN product p ON p.id = r.pid
 		WHERE UID=#{id}
 	</select>
-	<!-- 안원영 추가 회원탈퇴 삭제  -->
-	<delete id="deleteuserid" parameterType="String">
-		DELETE FROM REVIEW WHERE UID=#{id}
-	</delete>
 	
 	<select id="select" parameterType="String" resultType="reviewVO">
 		SELECT * FROM REVIEW WHERE ID=#{id}
@@ -39,7 +36,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM REVIEW
 	</select>
 	<insert id="insert" parameterType="reviewVO">
-		INSERT INTO REVIEW VALUES (#{id},#{pid},#{star},#{text},sysdate())
+		INSERT INTO REVIEW VALUES (NULL,#{pid},#{star},#{text},sysdate(),#{filename},#{uid})
 	</insert>
 	<update id="update" parameterType="reviewVO">
 		UPDATE REVIEW SET STAR=#{star},TEXT=#{text} WHERE ID=#{id}

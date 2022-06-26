@@ -1,5 +1,7 @@
 package com.multi.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ public class CartVO  {
 	private int oid;
 	// 추가 필드 서예린 06/23
 	private int result;
+	private List<CartVO> cartlist;
 	
 	// cart insert(추가 생성자)
 	public CartVO(int count, String uid, int pid, int size) {

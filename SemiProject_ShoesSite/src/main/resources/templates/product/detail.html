@@ -1,4 +1,5 @@
 <meta charset="UTF-8">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <style>
 #userid{
 	font-weight: bold;
@@ -19,9 +20,9 @@
 	margin-bottom: 30px;
 }
 
-input[type="radio"] {display: none;}
+input[name="size"] {display: none;}
 
-input[type="radio"]+label{
+input[name="size"]+label{
   display: inline-block;
   width: 50px; 
   height: 35px;
@@ -33,12 +34,12 @@ input[type="radio"]+label{
   text-align: center;
   font-size: medium;
 }
-input[type="radio"]:checked + label{
+input[name="size"]:checked + label{
   background-color : #cbb18a;
   text-align: center;
 }
 
-input[type="radio"]:disabled+ label{
+input[name="size"]:disabled+ label{
   background-color : #f7f4f4;
   color : #dfdada;
   text-align: center;
@@ -74,6 +75,50 @@ input[type="radio"]:disabled+ label{
 	width : 50px;
 	height:40px;
 	font-size: large;
+}
+input[name="star"]{
+	display: none;
+}
+.comment-respond .starrate {margin-bottom:20px}
+.comment-respond .starrate label.starclass-1:before {
+    content: "\f005";
+}
+.comment-respond .starrate label:first-child {
+    padding-left: 0;
+}
+.comment-respond .starrate label {
+    font-size: 0;
+    color: #ccc;
+    display: inline-block;
+    border-right: 1px solid #e6e6e6;
+    padding: 0 10px;
+    line-height: 12px;
+    cursor: pointer;
+}
+.comment-respond .starrate label.starclass-2:before {
+    content: "\f005\f005";
+}
+.comment-respond .starrate label.starclass-3:before {
+    content: "\f005\f005\f005";
+}
+.comment-respond .starrate label.starclass-4:before {
+    content: "\f005\f005\f005\f005";
+}
+.comment-respond .starrate label.starclass-5:before {
+    content: "\f005\f005\f005\f005\f005";
+}
+.eb-Reviews .comment-respond .starrate label:hover {
+    color: #fed700;
+}
+input[name="star"]:checked+label{
+	color: #fed700;
+}
+
+.comment-respond .starrate label:before {
+    font-family: 'FontAwesome';
+    font-size: 12px;
+    display: inline-block;
+    letter-spacing: 2px;
 }
 
 </style>
@@ -124,7 +169,6 @@ $(document).ready(function() {
 		
 	});
 	
-	
 	$('#addcart').click(function() {
 		var c = $('input[type="radio"]:checked').val();
 		var q = $('#qty').val();
@@ -141,6 +185,32 @@ $(document).ready(function() {
 				addcart(pid);
 			}
 		}
+	});
+	
+	$('#submitcomment').click(function(){
+		var comment = $('#comment').val();
+		var star = $('input[name="star"]:checked').val();
+		var uid = $('#userid').val();
+		
+		if(star==""||star==null||star==undefined||star==0){
+			$('#star_span').text('필수항목입니다.');
+		}else{
+			$('#star_span').text('');
+			if (comment==""||comment==null||comment==undefined){
+				$('#comment').focus();
+				$('#comment_span').text('필수항목입니다.');		
+			}else{
+				$('#comment_span').text('');	
+				$('#commentform').attr({
+					'enctype':'multipart/form-data',
+					'method':'post',
+					'action':'addreview'
+				})
+				$('#commentform').submit();
+				alert("리뷰가 등록되었습니다.")
+			}
+		}
+		
 	});
 });
 	
@@ -176,43 +246,6 @@ $(document).ready(function() {
 									<img th:src="'assets/image/products/'+${detailproduct.imgname1}" alt="" width="100%">
 								</div>
 							</div>
-							
-							<!-- 추천 제품 슬라이드  -->
-							<!-- <div class="sp-wrap">
-								<div id="additional_silder_products_images" class="owl-carousel">
-									<div class="item">
-										<a href="assets/image/products/product-1.jpg">
-											<img src="assets/image/products/product-2.jpg" alt="">
-										</a>
-									</div>	
-									<div class="item">
-										<a href="assets/image/products/product-3.jpg">
-											<img src="assets/image/products/product-4.jpg" alt="">
-										</a>
-									</div>
-									<div class="item">
-										<a href="assets/image/products/product-5.jpg">
-											<img src="assets/image/products/product-6.jpg" alt="">
-										</a>
-									</div>
-									<div class="item">
-										<a href="assets/image/products/product-7.jpg">
-											<img src="assets/image/products/product-8.jpg" alt="">
-										</a>
-									</div>	
-									<div class="item">
-										<a href="assets/image/products/product-9.jpg">
-											<img src="assets/image/products/product-10.jpg" alt="">
-										</a>
-									</div>	
-									<div class="item">
-										<a href="assets/image/products/product-11.jpg">
-											<img src="assets/image/products/product-12.jpg" alt="">
-										</a>
-									</div>
-									
-								</div>
-							</div> -->
 						</div>
 					</div>
 				</div>
@@ -222,12 +255,12 @@ $(document).ready(function() {
 					<div class="eb_left single_products_left_side">
 						<h2 th:text=${detailproduct.name}>name</h2>
 						<div class="rating">
-							<p>			
-								<span><i class="fa fa-star"></i></span>				  				  
-								<span><i class="fa fa-star"></i></span>				  				  
-								<span><i class="fa fa-star-o"></i></span>				  				 
-								<span><i class="fa fa-star-o"></i></span>				  				  
-								<span><i class="fa fa-star-o"></i></span>				  					
+							<p>	
+								<th:block th:switch="${staravg}">
+									<span th:case="0"><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+									<span th:case="5"><i class="fa fa-star" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+									<span th:case="*"><i class="fa fa-star" th:each="num:${#numbers.sequence(1,staravg)}"></i><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-staravg)}"></i></span>
+								</th:block>
 								<span class="border"> | </span> 
 								<span th:text="${reviewcount}+' reviews'">reviewcount</span>	  
 							</p>
@@ -248,8 +281,8 @@ $(document).ready(function() {
 									  <h3>Size</h3>
 									  <div id="border">
 									  <div class="form-radio" th:each="sizedetail:${slist}">
-									  	<input type="radio" th:id="${sizedetail.size}" th:value="${sizedetail.size}" name="size">
-									  	<label th:for="${sizedetail.size}" th:text="${sizedetail.size}"></label>
+									  	<input type="radio" th:id="${sizedetail.size}" th:value="${sizedetail.size}" name="size" >
+									  	<label th:for="${sizedetail.size}" th:text="${sizedetail.size}" ></label>
 									  </div>
 									  </div>
 									  <div><span id="size_span"></span></div>
@@ -265,15 +298,6 @@ $(document).ready(function() {
 								</div>
 							</div>
 						</div>
-						
-					
-						<div class="email-addto-box">
-							<ul class="add-to-links">
-								<li> <a class="link-wishlist" href="#"><span>Add to Wishlist</span></a></li>
-								<li><span class="separator">|</span> <a class="link-compare" href="#"><span>Add to Compare</span></a></li>
-							</ul>
-							<p class="email-friend"><a href="#" class=""><span>Email to a Friend</span></a></p>
-                      </div>
 						<ul class="shipping-pro">
 							<li>Free Wordwide Shipping</li>
 							<li>30 Days Return</li>
@@ -316,10 +340,18 @@ $(document).ready(function() {
 										<div>
 											<h4 class="eb-Reviews-title" th:text="${reviewcount}+' reviews for '+${detailproduct.name}"></h4>
 											    <div class="comment-text" th:each="reviewdetail:${rlist}" id="commentlist">
-													<div class="ratings">
-														<div class="rating-box">
-															<div style="width:100%" class="rating"></div>
-														</div>
+													<div class="reviewstar">
+														<th:block th:switch="${staravg}">
+															<div th:case="0">
+																<span><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5)}" style="color: #fed700"></i></span>
+															</div>
+															<div th:case="5">
+																<span><i class="fa fa-star" th:each="num:${#numbers.sequence(1,5)}" style="color: #fed700"></i></span>
+															</div>
+															<div th:case="*">
+																<span><i class="fa fa-star" th:each="num:${#numbers.sequence(1,staravg)}" style="color: #fed700"></i></span><span><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-staravg)}" style="color: #fed700"></i></span>
+															</div>
+														</th:block>
 													</div>
 													<p class="meta">
 													<span th:text="${reviewdetail.uid}" id="userid">John Doe</span> 
@@ -332,35 +364,42 @@ $(document).ready(function() {
 										</div>
 									<div>
 								<div>
-								<div class="comment-respond">
+								<div class="comment-respond" th:if="${session.user!=null}">
 									<span class="comment-reply-title"><i class="fa fa-pencil-square-o"></i> Write a review </span>			
-									<form action="#" method="post" class="comment-form" novalidate="">
-										<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
-										<div class="comment-form-rating">
-											<label id="rating">Your rating</label>
-											<p class="stars">
-											<span>
-											<a class="star-1" href="#">1</a>
-											<a class="star-2" href="#">2</a>
-											<a class="star-3" href="#">3</a>
-											<a class="star-4" href="#">4</a>
-											<a class="star-5" href="#">5</a>
-											</span>
-											</p>
-										</div>
-										<p class="comment-form-comment">
-											<label>Your review <span class="required">*</span></label>
-											<textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
-										</p>
-										<p class="comment-form-author">
-										<label for="author">Name <span class="required">*</span></label> 
-										<input id="author" name="author" type="text" value="" size="30" required=""></p>
-										<p class="comment-form-email">
-										<label for="email">Email <span class="required">*</span></label> 
-										<input id="email" name="email" type="email" value="" size="30" required=""></p>
-										<p class="form-submit">
-										<input name="submit" type="submit" id="submit" class="btn submit" value="Submit"> 
-										</p>
+									<form class="comment-form" id="commentform">
+											<input type="hidden" name="uid" th:value=${session.user.id}>
+											<input type="hidden" name="pid" th:value=${detailproduct.id}>
+											<div class="comment-form-rating">
+											
+												<label id="rating">Your rating * <span id="star_span" style="color:red;font-weight:bold;"></span></label>
+												<p class="starrate">
+													<input type="radio" name="star" value=1 id="s1">
+													<label class="starclass-1" for="s1" id="star1">1</label>
+												
+													<input type="radio" name="star" value=2 id="s2">
+													<label class="starclass-2" for="s2" id="star2">2</label>
+													
+													<input type="radio" name="star" value=3 id="s3">
+													<label class="starclass-3" for="s3" id="star3">3</label>
+												
+													<input type="radio" name="star" value=4 id="s4">
+													<label class="starclass-4" for="s4" id="star4">4</label>
+													
+													<input type="radio" name="star" value=5 id="s5">
+													<label class="starclass-5" for="s5" id="star5">5</label>
+												</p>
+											</div>
+											<div class="comment-form-comment">
+												<label>Your review * <span id="comment_span" style="color:red;font-weight:bold;"></span></label>
+												<textarea id="comment" name="text" cols="45" rows="8" required=""></textarea>
+											</div>
+											<div class="custom-file">
+									            <input type="file" class="custom-file-input" id="customFile" name="mf">
+									            <label class="custom-file-label" for="customFile"></label>
+									        </div>
+
+											<button type="button" id="submitcomment" class="btn submit">제출</button>
+										
 									</form>
 								</div><!-- #respond -->
 							</div>
@@ -379,3 +418,4 @@ $(document).ready(function() {
 		</div>	
 	</div>
 </div>
+</html>

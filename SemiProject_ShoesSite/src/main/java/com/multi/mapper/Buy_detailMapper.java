@@ -19,4 +19,6 @@ public interface Buy_detailMapper {
 	public List<Buy_detailVO> selectid(int oid);
 	public List<Buy_detailVO> getbuy_detail(String id) throws Exception;
 	public void deletebuyid(int id) throws Exception;
+	// 06.24 안원영 추가 - buy_detail 페이지
+	public List<Buy_detailVO> selectdetailproduct(int oid);
 }

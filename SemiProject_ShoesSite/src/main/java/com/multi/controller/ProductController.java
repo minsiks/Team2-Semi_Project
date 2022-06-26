@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.multi.biz.ProductBiz;
 import com.multi.biz.ReviewBiz;
 import com.multi.biz.Shoes_cntBiz;
+import com.multi.frame.Util;
 import com.multi.vo.Filter;
 import com.multi.vo.ProductVO;
 import com.multi.vo.ReviewVO;
@@ -32,9 +33,16 @@ public class ProductController {
 	public String product(Model m,String gender) {
 		List<ProductVO> list3 = null;
 		Filter f = new Filter("G", gender, null, 0, 0, null, null,0);
+		int msg = 0;
 		try {
 			list3 = pbiz.getfilter(f);
-			m.addAttribute("plist", list3);
+			if(list3.isEmpty()) {
+				m.addAttribute("msg", msg);
+			}else {
+				msg=1;
+				m.addAttribute("plist", list3);
+				m.addAttribute("msg", msg);
+			}
 		} catch (Exception e) {
 			e.printStackTrace(); // 오류페이지 제작 필요
 		}
@@ -51,6 +59,7 @@ public class ProductController {
 		List<ReviewVO> list2 = null;
 		int staravg = 0;
 		int reviewcount = 0;
+		
 		try {
 			obj = pbiz.get(id);
 			list1 = sbiz.getproduct(id);
@@ -75,9 +84,11 @@ public class ProductController {
 		m.addAttribute("staravg", staravg);
 		m.addAttribute("reviewcount", reviewcount);
 		
+		
 		m.addAttribute("center", "product/detail");
 		m.addAttribute("footer", "footer");
 		m.addAttribute("header", "header");
+		
 		return "index";
 	}
 	
@@ -85,16 +96,39 @@ public class ProductController {
 	public String addfilter(Model m, String type, String gender,
 			String cid, Integer param1, Integer param2, String color, String size,Integer sortby) {
 		Filter f = new Filter(type, gender, cid, param1, param2, color, size, sortby);
+		int msg = 0;
 		
 		List<ProductVO> list = null;
 		try {
 			list = pbiz.getfilter(f);
-			m.addAttribute("plist", list);
+			if(list.isEmpty()) {
+				m.addAttribute("msg", msg);
+			}else {
+				msg = 1;
+				m.addAttribute("plist", list);
+				m.addAttribute("msg", msg);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return "/product/center :: #productTable";
+	}
+	
+	// 6.25 추가
+	@RequestMapping("/addreview")
+	public String addreview(ReviewVO obj, Model m) {
+		int pid = obj.getPid();
+		
+		String filename = obj.getMf().getOriginalFilename();
+		obj.setFilename(filename);
+		try {
+			rbiz.register(obj); 
+			Util.saveFile(obj.getMf());
+		} catch (Exception e) { 
+			e.printStackTrace();
+		} 
+		
+		return "redirect:/productdetail?id="+pid;
 	}
 
 }

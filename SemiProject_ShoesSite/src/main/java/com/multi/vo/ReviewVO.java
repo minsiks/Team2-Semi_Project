@@ -2,6 +2,8 @@ package com.multi.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,8 @@ public class ReviewVO {
 	private Date regdate;
 	private String filename;
 	private String uid;
+	
+	private MultipartFile mf;
 	
 	//star 평균
 	private int staravg;

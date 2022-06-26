@@ -14,12 +14,18 @@ p{
 	padding-left: 15px;
 }
 
+#noresult{
+	color: red;
+	text-align: center;
+}
+
 input[name="cid"]+label{
 	display: block;
 	width: auto;
 	line-height: 20px;
 	padding-left: 10px;
 	font-weight: normal;
+	cursor: pointer;
 }
 
 input[name="cid"]:checked+label span::after{
@@ -41,10 +47,6 @@ input[name="param2"]{
 	display:inline-block;
 	text-align: right;
 }
-
-/* #minplabel, #maxplabel{
-}
- */
 
 input[name="color"] {
 	display: none;
@@ -99,11 +101,6 @@ input[name="size"]:checked + label span {
 	margin: 0;
 	padding: 0;
 }
-
-/* #addfilter{
-}
-#resetfilter{
-} */
 
 </style>
 <script>
@@ -170,7 +167,6 @@ function addfilter(){
  		size = null;
  	}
  	
- 	alert(gender+cid+param1+param2+color+size+sortby);
  	
 	$.ajax({
 		url:'/addfilter',
@@ -196,9 +192,16 @@ $(document).ready(function() {
 	 	addfilter();
 	});
 	
+	$('#resetfilter').click(function() {
+		$('input:checkbox[name="cid"]:checked').prop('checked',false);
+		$('input:checkbox[name="color"]:checked').prop('checked',false);
+		$('input:checkbox[name="size"]:checked').prop('checked',false);
+		$('input[name="param1"]').val('');
+		$('input[name="param2"]').val('');
+	});
+	
 	$("#input-sort").on("change", function(){
 		var aaa = $('#input-sort option:selected').val();
-    	alert(aaa);
     	addfilter();
 	});
 	
@@ -363,32 +366,28 @@ $(document).ready(function() {
 							<div class="clear"></div>
 						</div>
 					<!-- product-list-top -->
-					<div id = "productTable">
+					<div id = "productTable" th:if="${msg}==1">
 						<div class="col-sm-4" th:each="detail:${plist}" th:id="${detail.id}">
 							<div class="product-thumb">
 								<div class="image wow fadeInDown animated">
 									<a th:href="@{productdetail(id=${detail.id})}"><img class="wow fadeInDown animated" th:src="'assets/image/products/'+${detail.imgname1}" alt="Kundli Dosha" title="Kundli Dosha" width="100%"></a>
-									<div class="button-group">
-										<div class="inner">
-											
-											<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
-											<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
-											<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
-										</div>
-									</div>
 								</div>
 								<div class="caption">
 									
 									<div class="rate-and-title">
 										<h4 class="wow fadeInDown animated" th:text="${detail.name}"><a th:href="">name</a></h4>
-										<div class="rating wow fadeInDown animated">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<i class="fa fa-star-o"></i>
-											<div class="clear"></div>
-										</div>
+										<th:block th:switch="${detail.staravg}">
+											<div class="rating wow fadeInDown animated" th:case="0">
+												<span id="staro" ><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+											</div>
+											<div class="rating wow fadeInDown animated" th:case="5">
+												<span id="staro" ><i class="fa fa-star" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+											</div>
+											<div class="rating wow fadeInDown animated" th:case="*">
+												<span id="star"><i class="fa fa-star" th:each="num:${#numbers.sequence(1,detail.staravg)}"></i></span><span id="staro" ><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-detail.staravg)}"></i></span>
+											</div>
+										</th:block>
+										
 										<p class="price wow fadeInDown animated">
 											<span class="price" th:text="${detail.price}+'원'">price</span>  
 										</p>
@@ -396,7 +395,10 @@ $(document).ready(function() {
 								</div>
 							</div>
 						</div>	
-					</div>							
+					</div>	
+					<div id = "productTable" th:unless="${msg}==1">
+						<h1 id="noresult">검색결과가 없습니다.</h1>
+					</div>						
 					<!-- products end -->
 					</div>	
 				</div>

@@ -1990,7 +1990,7 @@ html body .owl-carousel {
     opacity: 0;
 }
 
-#products.products_section .product-thumb .button-group > .inner {
+/* #products.products_section .product-thumb .button-group > .inner {
     background: #fff;
     padding: 4px 7px;
     border-radius: 5px;
@@ -1998,8 +1998,8 @@ html body .owl-carousel {
     box-shadow: 0 2px 3px 1px rgba(0,0,0,0.1);
     display: inline-block;
     vertical-align: top;
-}
-#products.products_section .product-thumb .button-group button {
+} */
+/* #products.products_section .product-thumb .button-group button {
     width: auto;
     border: none;
     display: inline-block;
@@ -2021,18 +2021,18 @@ html body .owl-carousel {
     transition: all 0.5s;
 	outline:0;
 	border-right: 1px solid #eeeeee;
-}
-#products.products_section .product-thumb .button-group button:last-child {
+} */
+/* #products.products_section .product-thumb .button-group button:last-child {
 	border-right:0px solid #eeeeee;
 }
 #products.products_section .product-thumb .button-group button:hover {
     background: #cbb18a;
     color: #fff;
-}
+} */
 #products.products_section .product-thumb .button-cart:before {
     content:"\f07a";
 }
-#products.products_section .product-thumb .button-group .button-quickview:before {
+/* #products.products_section .product-thumb .button-group .button-quickview:before {
     content:"\f06e";
 }
 #products.products_section .product-thumb .button-group button.button-wishlist:before {
@@ -2040,7 +2040,7 @@ html body .owl-carousel {
 }
 #products.products_section .product-thumb .button-group button.button-compare:before {
     content:"\f24e";
-}
+} */
 #products.products_section .product-thumb .button-group button:before {
     font-family: twayair;
     display: inline-block;
@@ -2048,13 +2048,13 @@ html body .owl-carousel {
     line-height: inherit;
     font-weight: normal;
 }
-#products.products_section .product-thumb .button-group button span {
+/* #products.products_section .product-thumb .button-group button span {
     display: none;
 }
 #products.products_section .product-thumb:hover .button-group {
     opacity: 1;
     bottom: 2rem;
-}
+} */
 #products.products_section .product-thumb .sale {
     position: absolute;
     left: 2rem;
@@ -2072,9 +2072,9 @@ html body .owl-carousel {
     border-radius: 5px;
 	background:#cbb18a;
 }
-#products.products_section .product-thumb .caption button i {
+/* #products.products_section .product-thumb .caption button i {
     margin-right:3px;
-}
+} */
 /*
 breadcrumb CSS
 */

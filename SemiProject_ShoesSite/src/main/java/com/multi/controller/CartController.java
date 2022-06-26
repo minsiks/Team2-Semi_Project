@@ -1,5 +1,6 @@
 package com.multi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.multi.biz.Addr_listBiz;
 import com.multi.biz.BuyBiz;
@@ -18,8 +20,6 @@ import com.multi.vo.BuyVO;
 import com.multi.vo.Buy_detailVO;
 import com.multi.vo.CartVO;
 import com.multi.vo.CustVO;
-
-import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/cart")
@@ -40,6 +40,7 @@ public class CartController {
 	@RequestMapping("")
 	public String cart(Model m,HttpSession session) {
 		CustVO ncust = (CustVO) session.getAttribute("user");
+		List<CartVO> list = new ArrayList<CartVO>();
 			if(ncust == null) {
 				m.addAttribute("center", "login/login");
 			}
@@ -52,7 +53,7 @@ public class CartController {
 				total = cartbiz.gettotal(id);
 				m.addAttribute("center", "cart/cart");
 				m.addAttribute("clist", clist);
-
+				m.addAttribute("list", list);
 				m.addAttribute("total", total);
 				
 			} catch (Exception e) {
@@ -72,6 +73,19 @@ public class CartController {
 			e.printStackTrace();
 		}
 		return "redirect:";
+	}
+	@RequestMapping("/update")
+	public String update(Model m,CartVO cart) {
+		List<CartVO> list = new ArrayList<CartVO>();
+		list = cart.getCartlist();
+		try {
+			for (CartVO cartVO : list) {
+				cartbiz.modify(cartVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/cart/checkout";
 	}
 	@RequestMapping("/checkout")
 	public String checkout(Model m ,HttpSession session) { 

@@ -21,6 +21,7 @@ import com.multi.biz.CustBiz;
 import com.multi.biz.ReviewBiz;
 import com.multi.vo.Addr_listVO;
 import com.multi.vo.BuyVO;
+import com.multi.vo.Buy_detailVO;
 import com.multi.vo.CartVO;
 import com.multi.vo.CustVO;
 import com.multi.vo.ReviewVO;
@@ -108,7 +109,31 @@ public class MypageController {
 		m.addAttribute("center", "mypage/mypage");
 		return "index";
 	}
+	
+	@RequestMapping("buy_detail")//쇼핑정보 - 주문/배송현황 - 상세주문내역 실행 
+	public String buy_detail(Model m, int id, HttpSession session) {
+		CustVO cust = (CustVO) session.getAttribute("user");
+		List<Buy_detailVO> list = null;
 
+		System.out.println(id);
+
+		try {
+			
+			list = buy_detail_biz.selectdetailproduct(id);
+			System.out.println("oid가 " + id + " 인 buy_detailList : " + list);
+
+			m.addAttribute("buy_detailList", list);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+		m.addAttribute("mypage_center", "mypage/buy_detail");
+		m.addAttribute("left", "mypage/left");
+		m.addAttribute("center", "mypage/mypage");
+		return "index";
+	}
 	@RequestMapping("review")//활동정보 - 상품리뷰 클릭시 실행  
 	public String review(Model m, String id) {//user id 매개변수로 들어옴 
 		CustVO cust = null;

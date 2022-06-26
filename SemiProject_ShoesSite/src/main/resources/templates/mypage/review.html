@@ -7,6 +7,11 @@
 #star {
 	color: orange;
 }
+table img {
+	width: 50px;
+	height: 50px;
+}
+
 </style>
 
 
@@ -24,9 +29,8 @@
 
 			</div>
 			<hr>
-			<div th:unless="${not #lists.isEmpty(buylist)}" > 
-				1달 사이의 구매 품목이 없습니다. 
-			</div>
+			<div th:unless="${not #lists.isEmpty(buylist)}">1달 사이의 구매 품목이
+				없습니다.</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -37,7 +41,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:if="${not #lists.isEmpty(buylist)}" th:each="buy : ${buylist}" th:onclick="location.href='/productdetail?id=[[${buy.pid}]]'">
+					<tr th:if="${not #lists.isEmpty(buylist)}"
+						th:each="buy : ${buylist}"
+						th:onclick="location.href='/productdetail?id=[[${buy.pid}]]'">
 						<td th:text="${buy.name}">name</td>
 						<td th:text="${buy.pid}" id="buy_pid" th:value="${buy.pid}"></td>
 						<td th:text="${buy.price_one}">price_one</td>
@@ -57,16 +63,14 @@
 		<div>
 			<div class="row">
 				<div class="col-sm-6">
-					<h2>나의 상품리뷰 모아보기 </h2>
-					
+					<h2>나의 상품리뷰 모아보기</h2>
+
 				</div>
 
 
 			</div>
 			<hr>
-			<div th:unless="${not #lists.isEmpty(review)}" > 
-				리뷰가 존재하지 않습니다. 
-			</div>
+			<div th:unless="${not #lists.isEmpty(reviewlist)}">리뷰가 존재하지 않습니다.</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -81,7 +85,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:if="${not #lists.isEmpty(review)}" th:each="review : ${reviewlist}" th:onclick="location.href='/productdetail?id=[[${review.pid}]]'">
+					<tr th:if="${not #lists.isEmpty(reviewlist)}"
+						th:each="review : ${reviewlist}"
+						th:onclick="location.href='/productdetail?id=[[${review.pid}]]'">
 						<td>
 							<div class="rating">
 								<p>
@@ -96,7 +102,11 @@
 						<td th:text="${review.color}">color</td>
 						<td th:text="${review.text}">text</td>
 						<td><img
-							th:src="'/assets/image/products/'+${review.filename}">filename</td>
+							th:src="'/assets/image/products/'+${review.filename}"
+							th:if="review.filename != null"> <img
+							th:src="'/assets/image/products/'+${review.filename}"
+							th:unless="review.filename != null"></td>
+
 					</tr>
 
 				</tbody>

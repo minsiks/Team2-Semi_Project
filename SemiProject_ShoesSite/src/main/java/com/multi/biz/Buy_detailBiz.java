@@ -51,4 +51,8 @@ public class Buy_detailBiz implements Biz<Integer,Buy_detailVO>{
 	public void deletebuyid(Integer k) throws Exception {
 		dao.deletebuyid(k);
 	}
+	// 06.24 안원영 추가 - buy_detail 페이지 추가 
+	public List<Buy_detailVO> selectdetailproduct(int oid) throws Exception {
+		return dao.selectdetailproduct(oid);
+	}
 }
