@@ -44,4 +44,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		DELETE FROM REVIEW WHERE ID=#{id}
 	</delete>
+	
+	<!-- 안원영 06.27수정  -->
+	<delete id="deleteuserid" parameterType="String" >
+		DELETE FROM REVIEW WHERE UID=#{id}
+	</delete>
 </mapper>

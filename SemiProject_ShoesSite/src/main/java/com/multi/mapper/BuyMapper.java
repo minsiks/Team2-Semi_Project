@@ -19,4 +19,6 @@ public interface BuyMapper {
 	public int selectid() throws Exception;
 	// 안원영 추가 
 	public List<BuyVO> selectUserBuy(String id) throws Exception;
+	//06.27 안원영 추가 수정
+	public List<BuyVO> selectUserBuyGroup(String id) throws Exception;
 }

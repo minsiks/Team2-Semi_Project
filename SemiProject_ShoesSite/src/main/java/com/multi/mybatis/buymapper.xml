@@ -32,7 +32,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="buyVO">
 		SELECT * FROM buy
 	</select>
-	<!-- 안원영 추가 -->
+	
+	<!-- 안원영 06.27수정  -->
 	<select id="selectUserBuy" parameterType="String"
 	resultType="buyVO">
 		SELECT b.id, b.uid, b.recipient, b.recipient_addr,b.recipient_addr_detail,
@@ -40,10 +41,22 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		bd.pid , bd.size, bd.cnt,
 		p.name, p.price AS price_one,p.imgname1
 		FROM buy b
-		INNER JOIN buy_detail bd ON b.id = bd.oid
-		INNER JOIN product p ON p.id = bd.pid
+		LEFT JOIN buy_detail bd ON b.id = bd.oid
+		LEFT JOIN product p ON p.id = bd.pid
+		WHERE b.uid = #{id};
+	</select>
+	<!-- 안원영 06.27수정  -->
+	<select id="selectUserBuyGroup" parameterType="String"
+	resultType="buyVO">
+		SELECT b.id, b.uid, b.recipient, b.recipient_addr,b.recipient_addr_detail,
+		b.recipient_phonenumber, b.request, b.price, b.regdate,
+		bd.pid , bd.size, bd.cnt,
+		p.name, p.price AS price_one,p.imgname1
+		FROM buy b
+		LEFT JOIN buy_detail bd ON b.id = bd.oid
+		LEFT JOIN product p ON p.id = bd.pid
 		WHERE b.uid = #{id}
-		GROUP BY b.id;
+		GROUP BY bd.oid;
 	</select>
 </mapper>
 

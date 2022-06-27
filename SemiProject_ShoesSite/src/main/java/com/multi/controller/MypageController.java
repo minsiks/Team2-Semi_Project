@@ -69,7 +69,7 @@ public class MypageController {
 
 		try {
 			cust = cust_biz.get(id);
-			list = buy_biz.selectUserBuy(id);
+			list = buy_biz.selectUserBuyGroup(id);
 			m.addAttribute("buylist", list);
 
 		} catch (Exception e) {
