@@ -96,7 +96,7 @@ $(document).ready(function(){
 							<tr th:each="c:${clist}">
 								<td><a class="table-cart-figure" href="checkout.html"><img th:src="'/assets/image/products/'+${c.pimg1}" alt="" width="146" height="132"></a><a class="table-cart-link" href="#" th:text="${c.pname}">Natural Mineral Stone</a></td>
 								<td id="price" th:text="${c.pprice}">$125.00</td>
-								<td text="${c.size}">280</td>
+								<td th:text="${c.size}">280</td>
 								<td>
 									<div class="table-cart-stepper">
 										<div class="stepper ">

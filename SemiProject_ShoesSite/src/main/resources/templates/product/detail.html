@@ -341,7 +341,7 @@ $(document).ready(function() {
 											<h4 class="eb-Reviews-title" th:text="${reviewcount}+' reviews for '+${detailproduct.name}"></h4>
 											    <div class="comment-text" th:each="reviewdetail:${rlist}" id="commentlist">
 													<div class="reviewstar">
-														<th:block th:switch="${staravg}">
+														<th:block th:switch="${reviewdetail.star}">
 															<div th:case="0">
 																<span><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5)}" style="color: #fed700"></i></span>
 															</div>
@@ -349,7 +349,7 @@ $(document).ready(function() {
 																<span><i class="fa fa-star" th:each="num:${#numbers.sequence(1,5)}" style="color: #fed700"></i></span>
 															</div>
 															<div th:case="*">
-																<span><i class="fa fa-star" th:each="num:${#numbers.sequence(1,staravg)}" style="color: #fed700"></i></span><span><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-staravg)}" style="color: #fed700"></i></span>
+																<span><i class="fa fa-star" th:each="num:${#numbers.sequence(1,reviewdetail.star)}" style="color: #fed700"></i></span><span><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-reviewdetail.star)}" style="color: #fed700"></i></span>
 															</div>
 														</th:block>
 													</div>
