@@ -4,9 +4,9 @@
 🖐️ 2조 : 김민식, 서예린, 안원영 유정아
 </aside>
 
-| 🗣️**언어**         | 🕸️**웹**                                                      | 🛠️**개발도구** | 💽**DataBase** | 🔱**협업도구**                                                | :framed_picture:**Framework** |
-| ----------------- | ------------------------------------------------------------ | ------------- | ------------- | ------------------------------------------------------------ | ----------------------------- |
-| **Java**  **SQL** | **HTML5**<br />   **CSS3**   <br />**JS**   <br />**JQuery**   <br />**Ajax**<br />  **BootStrap** | **Eclipse**   | **Mysql**     | **Zoom**<br /> **[Github](https://github.com/minsiks/Team2-Semi_Project)**<br /> **[ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)**<br /> **[padlet](https://padlet.com/tidnjrk010/Bookmarks?utm_campaign=added_post&utm_medium=desktop&utm_source=notifications)** <br />**[Notion](Multi%20Cam%20%E1%84%89%E1%85%A6%E1%84%86%E1%85%B5%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20fbd4e75f041a459aa02c6051ca5e67fb.md)** | **SpringBoot**  **MyBatis**   |
+| 🗣️**언어**               | 🕸️**웹**                                                      | 🛠️**개발도구** | 💽**DataBase** | 🔱**협업도구**                                                | :framed_picture:**Framework**     |
+| ----------------------- | ------------------------------------------------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------------------------- |
+| **Java**<br />  **SQL** | **HTML5**<br />   **CSS3**   <br />**JS**   <br />**JQuery**   <br />**Ajax**<br />  **BootStrap** | **Eclipse**   | **Mysql**     | **Zoom**<br /> **[Github](https://github.com/minsiks/Team2-Semi_Project)**<br /> **[ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)**<br /> **[padlet](https://padlet.com/tidnjrk010/Bookmarks?utm_campaign=added_post&utm_medium=desktop&utm_source=notifications)** <br />**[Notion](Multi%20Cam%20%E1%84%89%E1%85%A6%E1%84%86%E1%85%B5%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%20fbd4e75f041a459aa02c6051ca5e67fb.md)** | **SpringBoot**<br />  **MyBatis** |
 
 ## Nice(Shoes ShoppingSite) 프로젝트 관련 서류
 
