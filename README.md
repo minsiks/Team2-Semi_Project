@@ -69,7 +69,7 @@
 
 ## 프로젝트 기획
 
-![img](Images/화면 캡처 2022-06-27 143956.png)
+![img](Images/clip_image005.png)
 
 | 프로젝트 주제 및 개요              | [나이키 온라인 공식 쇼핑몰 홈페이지](https://www.nike.com/kr/ko_kr/w/men/fw?utm_source=Google&utm_medium=PS&utm_campaign=365DIGITAL_Google_SA_Keyword_Extend_PC&cp=53055959389_search_&gclid=Cj0KCQjwwJuVBhCAARIsAOPwGASu1zlJTEmTBCrb0N4tZXo148-2hjVf16nR0uFm1gM0p62eoXTYAuAaAn5JEALw_wcB)를  참고하여 신발 쇼핑몰을 제작한다. 체크박스를 이용한 제품 사이즈와 색상필터링 검색기능, 회원가입기능, 장바구니기능, 결제 API기능을 구현하는 것이 목표이다. |
 | ---------------------------------- | ------------------------------------------------------------ |
