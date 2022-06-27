@@ -3,9 +3,10 @@
 <aside>
 🖐️ 2조 : 김민식, 서예린, 안원영 유정아
 </aside>
-| 🗣️ <br />**언어**  |                          🕸️  **웹**                           | 🛠️ <br />**개발도구** | 💽  **DataBase** |                       🔱  **협업도구**                        |  :framed_picture:  **Framework**  |
-| :---------------: | :----------------------------------------------------------: | :------------------: | :-------------: | :----------------------------------------------------------: | :-------------------------------: |
-| **Java**  **SQL** | **HTML5**   <br />**CSS3**  <br />**JS**  <br /> **JQuery**  <br /> **Ajax**  <br />**BootStrap** |     **Eclipse**      |    **Mysql**    | **Zoom**  <br />**Google Docs**<br />[ ](https://github.com/minsiks/Team2-Semi_Project)**  **[Github](https://github.com/minsiks/Team2-Semi_Project)****[ ](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)<br />**  **[ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)**  **[ ](https://padlet.com/tidnjrk010/Bookmarks)<br />****[Padlet](https://padlet.com/tidnjrk010/Bookmarks)****[   ](https://hi-syl.notion.site/d9931d43fcd740328b8c45b34269994d)<br />**  **[Notion](https://hi-syl.notion.site/d9931d43fcd740328b8c45b34269994d)** | **SpringBoot<br />**  **MyBatis** |
+
+| **언어**          | **웹**                                                       | **개발도구** | **DataBase** | **협업도구**                                                 | **Framework**               |
+| ----------------- | ------------------------------------------------------------ | ------------ | ------------ | ------------------------------------------------------------ | --------------------------- |
+| **Java**  **SQL** | **HTML5**<br />   **CSS3**   <br />**JS**   <br />**JQuery**   <br />**Ajax**<br />  **BootStrap** | **Eclipse**  | **Mysql**    | **Zoom**  **Google Docs****[ ](https://github.com/minsiks/Team2-Semi_Project)**  **[Github](https://github.com/minsiks/Team2-Semi_Project)****[ ](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)**  **[ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)**  **[ ](https://padlet.com/tidnjrk010/Bookmarks)****[Padlet](https://padlet.com/tidnjrk010/Bookmarks)****[   ](https://hi-syl.notion.site/d9931d43fcd740328b8c45b34269994d)**  **[Notion](https://hi-syl.notion.site/d9931d43fcd740328b8c45b34269994d)** | **SpringBoot**  **MyBatis** |
 
 
 
